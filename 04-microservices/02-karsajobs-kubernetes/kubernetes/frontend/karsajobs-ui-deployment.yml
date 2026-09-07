@@ -1,0 +1,28 @@
+# =============================================================================
+# karsajobs-ui-deployment.yml
+# Deployment untuk frontend Karsa Jobs (Vue.js).
+# Frontend meminta data ke backend melalui alamat yang di-set saat build image
+# (VUE_APP_BACKEND = http://<NodeIP>:30001) pada berkas .env.
+# =============================================================================
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: karsajobs-ui          # nama Deployment frontend
+  labels:
+    app: karsajobs-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: karsajobs-ui
+  template:
+    metadata:
+      labels:
+        app: karsajobs-ui     # label pod (dicocokkan Service frontend)
+    spec:
+      containers:
+        - name: karsajobs-ui
+          image: ghcr.io/arighmt67-bit/karsajobs-ui:latest  # image frontend dari GHCR
+          imagePullPolicy: IfNotPresent  # pakai image lokal bila sudah ada di node
+          ports:
+            - containerPort: 8000   # port serve Vue.js

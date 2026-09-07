@@ -1,0 +1,37 @@
+item-app-1  | 
+item-app-1  | > docker-software-delivery@1.0.0 start /app
+item-app-1  | > node ./bin/www
+item-app-1  | 
+item-app-1  | NODE_ENV: production
+item-app-1  | Connected to database
+item-app-1  | [0mGET / [32m200 [0m132.975 ms - 785[0m
+item-db-1   | 2026-08-21T04:37:55.311+0000 I CONTROL  [initandlisten] MongoDB starting : pid=1 port=27017 dbpath=/data/db 64-bit host=2165db4d1159
+item-db-1   | 2026-08-21T04:37:55.311+0000 I CONTROL  [initandlisten] db version v3.6.23
+item-db-1   | 2026-08-21T04:37:55.311+0000 I CONTROL  [initandlisten] git version: d352e6a4764659e0d0350ce77279de3c1f243e5c
+item-db-1   | 2026-08-21T04:37:55.311+0000 I CONTROL  [initandlisten] OpenSSL version: OpenSSL 1.0.2g  1 Mar 2016
+item-db-1   | 2026-08-21T04:37:55.311+0000 I CONTROL  [initandlisten] allocator: tcmalloc
+item-db-1   | 2026-08-21T04:37:55.311+0000 I CONTROL  [initandlisten] modules: none
+item-db-1   | 2026-08-21T04:37:55.311+0000 I CONTROL  [initandlisten] build environment:
+item-db-1   | 2026-08-21T04:37:55.311+0000 I CONTROL  [initandlisten]     distmod: ubuntu1604
+item-db-1   | 2026-08-21T04:37:55.311+0000 I CONTROL  [initandlisten]     distarch: aarch64
+item-db-1   | 2026-08-21T04:37:55.311+0000 I CONTROL  [initandlisten]     target_arch: aarch64
+item-db-1   | 2026-08-21T04:37:55.311+0000 I CONTROL  [initandlisten] options: { net: { bindIpAll: true } }
+item-db-1   | 2026-08-21T04:37:55.311+0000 I -        [initandlisten] Detected data files in /data/db created by the 'wiredTiger' storage engine, so setting the active storage engine to 'wiredTiger'.
+item-db-1   | 2026-08-21T04:37:55.311+0000 I STORAGE  [initandlisten] 
+item-db-1   | 2026-08-21T04:37:55.311+0000 I STORAGE  [initandlisten] ** WARNING: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine
+item-db-1   | 2026-08-21T04:37:55.311+0000 I STORAGE  [initandlisten] **          See http://dochub.mongodb.org/core/prodnotes-filesystem
+item-db-1   | 2026-08-21T04:37:55.311+0000 I STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=965M,cache_overflow=(file_max=0M),session_max=20000,eviction=(threads_min=4,threads_max=4),config_base=false,statistics=(fast),compatibility=(release="3.0",require_max="3.0"),log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000),statistics_log=(wait=0),verbose=(recovery_progress),
+item-db-1   | 2026-08-21T04:37:55.624+0000 I STORAGE  [initandlisten] WiredTiger message [1787287075:624709][1:0xf825e2468000], txn-recover: Main recovery loop: starting at 1/24448
+item-db-1   | 2026-08-21T04:37:55.709+0000 I STORAGE  [initandlisten] WiredTiger message [1787287075:709799][1:0xf825e2468000], txn-recover: Recovering log 1 through 2
+item-db-1   | 2026-08-21T04:37:55.745+0000 I STORAGE  [initandlisten] WiredTiger message [1787287075:745079][1:0xf825e2468000], txn-recover: Recovering log 2 through 2
+item-db-1   | 2026-08-21T04:37:55.781+0000 I STORAGE  [initandlisten] WiredTiger message [1787287075:781415][1:0xf825e2468000], txn-recover: Set global recovery timestamp: 0
+item-db-1   | 2026-08-21T04:37:55.821+0000 I CONTROL  [initandlisten] 
+item-db-1   | 2026-08-21T04:37:55.821+0000 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+item-db-1   | 2026-08-21T04:37:55.821+0000 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+item-db-1   | 2026-08-21T04:37:55.821+0000 I CONTROL  [initandlisten] 
+item-db-1   | 2026-08-21T04:37:55.824+0000 I FTDC     [initandlisten] Initializing full-time diagnostic data capture with directory '/data/db/diagnostic.data'
+item-db-1   | 2026-08-21T04:37:55.824+0000 I NETWORK  [initandlisten] listening via socket bound to 0.0.0.0
+item-db-1   | 2026-08-21T04:37:55.824+0000 I NETWORK  [initandlisten] listening via socket bound to /tmp/mongodb-27017.sock
+item-db-1   | 2026-08-21T04:37:55.824+0000 I NETWORK  [initandlisten] waiting for connections on port 27017
+item-db-1   | 2026-08-21T04:37:56.139+0000 I NETWORK  [listener] connection accepted from 172.19.0.3:53268 #1 (1 connection now open)
+item-db-1   | 2026-08-21T04:37:56.141+0000 I NETWORK  [conn1] received client metadata from 172.19.0.3:53268 conn1: { driver: { name: "nodejs", version: "2.2.36" }, os: { type: "Linux", name: "linux", architecture: "arm64", version: "6.8.0-137-generic" }, platform: "Node.js v14.21.3, LE, mongodb-core: 2.1.20" }

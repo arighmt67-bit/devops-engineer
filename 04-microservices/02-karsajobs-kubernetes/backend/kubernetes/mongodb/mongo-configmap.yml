@@ -1,0 +1,14 @@
+# =============================================================================
+# mongo-configmap.yml
+# Menyimpan file konfigurasi mongo.conf yang akan di-mount ke container MongoDB.
+# Berisi properti storage.dbPath = /data/db sesuai ketentuan submission.
+# =============================================================================
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mongo-configmap       # nama ConfigMap, dirujuk sebagai volume di StatefulSet
+data:
+  # Data diperlakukan sebagai berkas mongo.conf (tanda '|' = block literal multi-baris)
+  mongo.conf: |
+    storage:
+      dbPath: /data/db

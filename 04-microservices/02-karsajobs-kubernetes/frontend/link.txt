@@ -1,0 +1,2 @@
+ghcr.io/arighmt67-bit/karsajobs:latest
+ghcr.io/arighmt67-bit/karsajobs-ui:latest

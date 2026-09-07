@@ -1,0 +1,31 @@
+Catatan untuk Reviewer
+=======================
+
+Password untuk mendekripsi daftar-user.txt.gpg:
+    Dicoding2026SSH!
+
+Cara mendekripsi:
+    gpg --output daftar-user.txt --decrypt daftar-user.txt.gpg
+
+Ringkasan pengerjaan:
+- Kriteria 1: User baru "dicoding" (Full Name: Dicoding Indonesia) telah dibuat.
+- Kriteria 2:
+    1. Login SSH via password dari user mesin pertama ke user dicoding di
+       localhost berhasil dilakukan.
+    2. Key pair (ed25519) dibuat di mesin pertama, public key disalin ke
+       authorized_keys milik dicoding, lalu login via public key berhasil.
+    3. sshd_config diubah agar: PubkeyAuthentication yes,
+       PasswordAuthentication no, Port 2000, PermitRootLogin no.
+    4. Login ulang ke dicoding melalui port 2000 dengan public key berhasil.
+       Percobaan login via password dan via root pada port 2000 ditolak,
+       sesuai konfigurasi.
+- Kriteria 3: daftar-user.txt dan log-ssh.txt dilampirkan, berisi bukti
+  pembuatan user dan aktivitas SSH di atas.
+
+Saran tambahan yang diterapkan:
+- Saran 1: log-ssh.json (log SSH dalam format JSON) dilampirkan.
+- Saran 2: daftar-user.txt.gpg (hasil enkripsi daftar-user.txt) dilampirkan,
+  password terlampir di atas.
+- Saran 3: hapus-log.sh dilampirkan, berisi script untuk menampilkan
+  penggunaan disk journalctl, membersihkannya hingga ~10MB, lalu
+  menampilkan kembali penggunaan disk, menggunakan perulangan while.

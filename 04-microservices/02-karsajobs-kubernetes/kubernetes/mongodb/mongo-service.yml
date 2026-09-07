@@ -1,0 +1,19 @@
+# =============================================================================
+# mongo-service.yml
+# Service (Headless) untuk MongoDB StatefulSet.
+# clusterIP: None membuat DNS stabil per-pod (dibutuhkan StatefulSet).
+# Dipakai backend via env MONGO_HOST untuk terhubung ke database.
+# =============================================================================
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo                 # nama Service = nilai MONGO_HOST pada backend
+  labels:
+    app: mongo
+spec:
+  clusterIP: None            # headless service (tanpa load-balancer IP)
+  selector:
+    app: mongo               # mengarah ke pod berlabel app=mongo
+  ports:
+    - port: 27017            # port service
+      targetPort: 27017      # port container MongoDB

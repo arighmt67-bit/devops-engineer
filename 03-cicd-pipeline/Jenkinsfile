@@ -1,0 +1,58 @@
+// Proyek Akhir a428 - CI/CD Pipeline (Scripted Pipeline - Saran 3)
+// Lanjutan dari Proyek Pertama (React App): Build + Test + Manual Approval + Deploy
+node {
+    def APP_IMAGE = 'node:lts-buster-slim'
+
+    stage('Build') {
+        // Mengambil source code dari repository
+        checkout scm
+        // Mulai catatan log lengkap pipeline (log.txt akan diarsipkan sebagai artifact)
+        sh 'echo "===== LOG EKSEKUSI PIPELINE - Build #${BUILD_NUMBER} =====" > log.txt'
+        sh 'echo "" >> log.txt'
+        sh 'echo "----- STAGE: BUILD (npm install) -----" >> log.txt'
+        // Membangun aplikasi React (install dependencies), output dicatat ke log.txt
+        docker.image(APP_IMAGE).inside('-p 3000:3000') {
+            sh 'npm install 2>&1 | tee -a log.txt'
+        }
+    }
+
+    stage('Test') {
+        sh 'echo "" >> log.txt'
+        sh 'echo "----- STAGE: TEST (unit test Jest) -----" >> log.txt'
+        // Menjalankan unit test (Jest) via jenkins/scripts/test.sh, output dicatat ke log.txt
+        docker.image(APP_IMAGE).inside('-p 3000:3000') {
+            withEnv(['CI=true']) {
+                sh './jenkins/scripts/test.sh 2>&1 | tee -a log.txt'
+            }
+        }
+    }
+
+    stage('Manual Approval') {
+        // Kriteria 4: Continuous Delivery - jeda approval manual sebelum tahap Deploy
+        sh 'echo "" >> log.txt'
+        sh 'echo "----- STAGE: MANUAL APPROVAL (menunggu persetujuan) -----" >> log.txt'
+        input message: 'Lanjutkan ke tahap Deploy?'
+        sh 'echo "Manual Approval: DISETUJUI (Proceed) pada $(date)" >> log.txt'
+    }
+
+    stage('Deploy') {
+        // Kriteria 2 & 3: Deploy aplikasi, dijeda 1 menit (sleep 60), lalu otomatis berakhir
+        sh 'echo "" >> log.txt'
+        sh 'echo "----- STAGE: DEPLOY -----" >> log.txt'
+        docker.image(APP_IMAGE).inside('-p 3000:3000') {
+            // Deploy aplikasi (npm run build + npm start), output dicatat ke log.txt
+            sh './jenkins/scripts/deliver.sh 2>&1 | tee -a log.txt'
+            // Kriteria 3: aplikasi berjalan selama 1 menit sebelum otomatis berakhir
+            sh 'echo "===== Aplikasi berjalan, pipeline dijeda 1 menit (sleep 60) =====" | tee -a log.txt'
+            sh 'sleep 60'
+            // Menghentikan aplikasi setelah jeda 1 menit
+            sh './jenkins/scripts/kill.sh 2>&1 | tee -a log.txt'
+        }
+        // Menandai selesainya stage Deploy pada log.txt
+        sh 'echo "" >> log.txt'
+        sh 'echo "Deploy stage selesai untuk build ${BUILD_NUMBER} pada $(date)" >> log.txt'
+        sh 'echo "===== PIPELINE SELESAI: SUCCESS =====" >> log.txt'
+        // Mengarsipkan log.txt lengkap sebagai artifact (diunduh dari halaman Artifacts di Blue Ocean)
+        archiveArtifacts artifacts: 'log.txt', fingerprint: true
+    }
+}

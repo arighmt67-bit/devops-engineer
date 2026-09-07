@@ -1,0 +1,19 @@
+# =============================================================================
+# karsajobs-ui-service.yml
+# Service tipe NodePort untuk mengekspos frontend Karsa Jobs ke browser
+# pengguna melalui Node IP:NodePort.
+# =============================================================================
+apiVersion: v1
+kind: Service
+metadata:
+  name: karsajobs-ui          # nama Service frontend
+  labels:
+    app: karsajobs-ui
+spec:
+  type: NodePort             # ekspos frontend ke luar cluster
+  selector:
+    app: karsajobs-ui        # mengarah ke pod frontend
+  ports:
+    - port: 8000             # port service
+      targetPort: 8000       # port container frontend
+      nodePort: 30000        # port node kustom (akses browser: NodeIP:30000)

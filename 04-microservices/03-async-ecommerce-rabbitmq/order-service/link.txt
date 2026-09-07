@@ -1,0 +1,9 @@
+Tautan container image di GitHub Packages (public):
+
+order-service
+https://github.com/users/arighmt67-bit/packages/container/package/order-service
+docker pull ghcr.io/arighmt67-bit/order-service:latest
+
+shipping-service
+https://github.com/users/arighmt67-bit/packages/container/package/shipping-service
+docker pull ghcr.io/arighmt67-bit/shipping-service:latest

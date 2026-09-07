@@ -1,0 +1,31 @@
+# =============================================================================
+# mongo-pv-pvc.yml
+# Mendefinisikan PersistentVolume (PV) dan PersistentVolumeClaim (PVC)
+# untuk penyimpanan data MongoDB agar data tetap ada (persisten).
+# =============================================================================
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mongo-pv              # nama PersistentVolume
+  labels:
+    type: local
+spec:
+  storageClassName: manual   # kelas storage manual (dicocokkan dengan PVC)
+  capacity:
+    storage: 1Gi             # kapasitas volume 1 GiB
+  accessModes:
+    - ReadWriteOnce          # bisa di-mount baca-tulis oleh satu node
+  hostPath:
+    path: "/mnt/data/mongo"  # lokasi penyimpanan di dalam node (minikube)
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mongo-pvc             # nama PVC, dirujuk oleh StatefulSet MongoDB
+spec:
+  storageClassName: manual   # harus sama dengan PV agar ter-bind
+  accessModes:
+    - ReadWriteOnce          # mode akses sama dengan PV
+  resources:
+    requests:
+      storage: 1Gi           # meminta 1 GiB dari PV

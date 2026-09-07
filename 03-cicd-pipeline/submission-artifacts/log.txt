@@ -1,0 +1,220 @@
+Started by user Ari Rahmat
+Obtained jenkins/Jenkinsfile from git https://github.com/arighmt67-bit/a428-cicd-labs.git
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/jenkins_home/workspace/submission-cicd-pipeline-arirahmatr-react
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/jenkins_home/workspace/submission-cicd-pipeline-arirahmatr-react/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/arighmt67-bit/a428-cicd-labs.git # timeout=10
+Fetching upstream changes from https://github.com/arighmt67-bit/a428-cicd-labs.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.47.3'
+ > git fetch --tags --force --progress -- https://github.com/arighmt67-bit/a428-cicd-labs.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/react-app^{commit} # timeout=10
+Checking out Revision a8ae334671f8349d2f5cf19338886ed19850260f (refs/remotes/origin/react-app)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f a8ae334671f8349d2f5cf19338886ed19850260f # timeout=10
+Commit message: "Update Jenkinsfile"
+ > git rev-list --no-walk a8ae334671f8349d2f5cf19338886ed19850260f # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] isUnix
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
++ docker inspect -f . node:lts-buster-slim
+
+Error: No such object: node:lts-buster-slim
+[Pipeline] isUnix
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
++ docker pull node:lts-buster-slim
+lts-buster-slim: Pulling from library/node
+7abf9f73c774: Pulling fs layer
+1315af9be5ad: Pulling fs layer
+1c9af253592a: Pulling fs layer
+5be12037d52a: Pulling fs layer
+e8f57c65f72e: Pulling fs layer
+5be12037d52a: Waiting
+e8f57c65f72e: Waiting
+1315af9be5ad: Verifying Checksum
+1315af9be5ad: Download complete
+5be12037d52a: Verifying Checksum
+5be12037d52a: Download complete
+e8f57c65f72e: Verifying Checksum
+e8f57c65f72e: Download complete
+7abf9f73c774: Verifying Checksum
+7abf9f73c774: Download complete
+7abf9f73c774: Pull complete
+1315af9be5ad: Pull complete
+1c9af253592a: Verifying Checksum
+1c9af253592a: Download complete
+1c9af253592a: Pull complete
+5be12037d52a: Pull complete
+e8f57c65f72e: Pull complete
+Digest: sha256:b5c14e85662c43b8c86a3a88259a34f0071474ad0a029ecb4ec39bbea588b030
+Status: Downloaded newer image for node:lts-buster-slim
+docker.io/library/node:lts-buster-slim
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] withDockerContainer
+Jenkins seems to be running inside container 1521aa1fac716159ed161d6065bdf5212969fc3c7207ebaf4a969b7bf625c781
+but /var/jenkins_home/workspace/submission-cicd-pipeline-arirahmatr-react could not be found among []
+but /var/jenkins_home/workspace/submission-cicd-pipeline-arirahmatr-react@tmp could not be found among []
+$ docker run -t -d -u 1000:1000 -p 3000:3000 -w /var/jenkins_home/workspace/submission-cicd-pipeline-arirahmatr-react -v /var/jenkins_home/workspace/submission-cicd-pipeline-arirahmatr-react:/var/jenkins_home/workspace/submission-cicd-pipeline-arirahmatr-react:rw,z -v /var/jenkins_home/workspace/submission-cicd-pipeline-arirahmatr-react@tmp:/var/jenkins_home/workspace/submission-cicd-pipeline-arirahmatr-react@tmp:rw,z -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** node:lts-buster-slim cat
+$ docker top e30061870586598922e91ffd943e028bbab3b66f7dcf4ae6e9692a0c24e68e49 -eo pid,comm
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Build)
+[Pipeline] sh
++ npm install
+
+added 1 package, changed 1 package, and audited 1816 packages in 18s
+
+220 packages are looking for funding
+  run `npm fund` for details
+
+154 vulnerabilities (9 low, 102 moderate, 35 high, 8 critical)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Test)
+[Pipeline] sh
++ ./jenkins/scripts/test.sh
+The following "npm" command (if executed) installs the "cross-env"
+dependency into the local "node_modules" directory, which will ultimately
+be stored in the Jenkins home directory. As described in
+https://docs.npmjs.com/cli/install, the "--save-dev" flag causes the
+"cross-env" dependency to be installed as "devDependencies". For the
+purposes of this tutorial, this flag is not important. However, when
+installing this dependency, it would typically be done so using this
+flag. For a comprehensive explanation about "devDependencies", see
+https://stackoverflow.com/questions/18875674/whats-the-difference-between-dependencies-devdependencies-and-peerdependencies.
++ set +x
+The following "npm" command tests that your simple Node.js/React
+application renders satisfactorily. This command actually invokes the test
+runner Jest (https://facebook.github.io/jest/).
++ npm test
+
+> my-app@0.1.0 test
+> react-scripts test --env=jsdom
+
+PASS src/App.test.js
+  ✓ renders without crashing (13 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        0.999 s
+Ran all test suites.
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Deliver)
+[Pipeline] sh
++ ./jenkins/scripts/deliver.sh
+The following "npm" command builds your Node.js/React application for
+production in the local "build" directory (i.e. within the
+"/var/jenkins_home/workspace/simple-node-js-react-app" directory),
+correctly bundles React in production mode and optimizes the build for
+the best performance.
++ npm run build
+
+> my-app@0.1.0 build
+> react-scripts build
+
+
+Creating an optimized production build...
+/var/jenkins_home/workspace/submission-cicd-pipeline-arirahmatr-react/node_modules/react-scripts/scripts/build.js:19
+  throw err;
+  ^
+
+Error: error:0308010C:digital envelope routines::unsupported
+    at new Hash (node:internal/crypto/hash:79:19)
+    at Object.createHash (node:crypto:139:10)
+    at module.exports (/var/jenkins_home/workspace/submission-cicd-pipeline-arirahmatr-react/node_modules/webpack/lib/util/createHash.js:135:53)
+    at NormalModule._initBuildHash (/var/jenkins_home/workspace/submission-cicd-pipeline-arirahmatr-react/node_modules/webpack/lib/NormalModule.js:417:16)
+    at /var/jenkins_home/workspace/submission-cicd-pipeline-arirahmatr-react/node_modules/webpack/lib/NormalModule.js:452:10
+    at /var/jenkins_home/workspace/submission-cicd-pipeline-arirahmatr-react/node_modules/webpack/lib/NormalModule.js:323:13
+    at /var/jenkins_home/workspace/submission-cicd-pipeline-arirahmatr-react/node_modules/loader-runner/lib/LoaderRunner.js:367:11
+    at /var/jenkins_home/workspace/submission-cicd-pipeline-arirahmatr-react/node_modules/loader-runner/lib/LoaderRunner.js:233:18
+    at context.callback (/var/jenkins_home/workspace/submission-cicd-pipeline-arirahmatr-react/node_modules/loader-runner/lib/LoaderRunner.js:111:13)
+    at /var/jenkins_home/workspace/submission-cicd-pipeline-arirahmatr-react/node_modules/babel-loader/lib/index.js:59:103 {
+  opensslErrorStack: [
+    'error:03000086:digital envelope routines::initialization error',
+    'error:0308010C:digital envelope routines::unsupported'
+  ],
+  library: 'digital envelope routines',
+  reason: 'unsupported',
+  code: 'ERR_OSSL_EVP_UNSUPPORTED'
+}
+
+Node.js v20.15.0
++ set +x
+The following "npm" command runs your Node.js/React application in
+development mode and makes the application available for web browsing.
+The "npm start" command has a trailing ampersand so that the command runs
+as a background process (i.e. asynchronously). Otherwise, this command
+can pause running builds of CI/CD applications indefinitely. "npm start"
+is followed by another command that retrieves the process ID (PID) value
+of the previously run process (i.e. "npm start") and writes this value to
+the file ".pidfile".
++ sleep 1
++ npm start
+
+> my-app@0.1.0 start
+> react-scripts start
+
++ echo 145
++ set +x
+Now...
+Visit http://localhost:3000 to see your Node.js/React application in action.
+(This is why you specified the "args -p 3000:3000" parameter when you
+created your initial Pipeline as a Jenkinsfile.)
+[Pipeline] input
+Finished using the website? (Click "Proceed" to continue)
+Proceed or Abort
+Approved by Ari Rahmat
+[Pipeline] sh
++ ./jenkins/scripts/kill.sh
+The following command terminates the "npm start" process using its PID
+(written to ".pidfile"), all of which were conducted when "deliver.sh"
+was executed.
++ cat .pidfile
++ kill 145
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+$ docker stop --time=1 e30061870586598922e91ffd943e028bbab3b66f7dcf4ae6e9692a0c24e68e49
+$ docker rm -f --volumes e30061870586598922e91ffd943e028bbab3b66f7dcf4ae6e9692a0c24e68e49
+[Pipeline] // withDockerContainer
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS

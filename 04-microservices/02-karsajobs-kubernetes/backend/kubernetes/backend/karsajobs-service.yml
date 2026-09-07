@@ -1,0 +1,19 @@
+# =============================================================================
+# karsajobs-service.yml
+# Service tipe NodePort untuk mengekspos backend API ke luar cluster
+# agar bisa diakses oleh frontend (VUE_APP_BACKEND) via Node IP:NodePort.
+# =============================================================================
+apiVersion: v1
+kind: Service
+metadata:
+  name: karsajobs             # nama Service backend
+  labels:
+    app: karsajobs
+spec:
+  type: NodePort             # ekspos ke luar cluster lewat port node
+  selector:
+    app: karsajobs           # mengarah ke pod backend
+  ports:
+    - port: 8080             # port service (dalam cluster)
+      targetPort: 8080       # port container backend
+      nodePort: 30001        # port node kustom (diakses dari luar: NodeIP:30001)

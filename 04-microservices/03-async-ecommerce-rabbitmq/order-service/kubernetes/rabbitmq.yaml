@@ -1,0 +1,75 @@
+# Menetapkan versi API Kubernetes untuk objek Deployment.
+apiVersion: apps/v1
+# Menyatakan jenis objek yang dibuat adalah Deployment.
+kind: Deployment
+# Bagian metadata yang mendeskripsikan identitas objek.
+metadata:
+  # Menetapkan nama Deployment untuk server RabbitMQ.
+  name: rabbitmq
+  # Memberi label agar objek mudah dikelompokkan dan dicari.
+  labels:
+    app: rabbitmq
+# Bagian spesifikasi yang mengatur perilaku Deployment.
+spec:
+  # Menjalankan satu replica Pod RabbitMQ.
+  replicas: 1
+  # Menentukan Pod mana yang dikelola oleh Deployment ini.
+  selector:
+    matchLabels:
+      app: rabbitmq
+  # Template cetakan Pod yang akan dibuat.
+  template:
+    # Metadata Pod berisi label yang dicocokkan oleh selector di atas.
+    metadata:
+      labels:
+        app: rabbitmq
+    # Spesifikasi isi Pod.
+    spec:
+      # Daftar container yang berjalan di dalam Pod.
+      containers:
+        # Menetapkan nama container RabbitMQ.
+        - name: rabbitmq
+          # Menggunakan image resmi RabbitMQ beserta plugin management.
+          image: rabbitmq:3.11-management
+          # Daftar port yang dibuka oleh container.
+          ports:
+            # Port AMQP untuk komunikasi antar service.
+            - containerPort: 5672
+              name: amqp
+            # Port antarmuka web management RabbitMQ.
+            - containerPort: 15672
+              name: management
+          # Mengatur permintaan dan batas sumber daya agar hemat memori.
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "100m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+---
+# Menetapkan versi API Kubernetes untuk objek Service.
+apiVersion: v1
+# Menyatakan jenis objek yang dibuat adalah Service.
+kind: Service
+# Bagian metadata yang mendeskripsikan identitas Service.
+metadata:
+  # Nama Service ini dipakai sebagai host pada AMQP_URL.
+  name: rabbitmq
+# Spesifikasi Service.
+spec:
+  # Memilih Pod bertanda label app: rabbitmq sebagai target.
+  selector:
+    app: rabbitmq
+  # Daftar port yang diekspos oleh Service.
+  ports:
+    # Memetakan port AMQP 5672 ke container.
+    - name: amqp
+      port: 5672
+      targetPort: 5672
+    # Memetakan port management 15672 ke container.
+    - name: management
+      port: 15672
+      targetPort: 15672
+  # Tipe ClusterIP membuat Service hanya dapat diakses di dalam cluster.
+  type: ClusterIP

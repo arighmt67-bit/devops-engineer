@@ -1,0 +1,32 @@
+# ============================================================
+# docker-compose.yml — Menjalankan arsitektur microservices
+#   item-app (Node.js + Express) + item-db (MongoDB)
+# ============================================================
+
+services:
+  # Service item-app: aplikasi web utama
+  item-app:
+    # Menggunakan image item-app dari GitHub Packages (GHCR)
+    image: ghcr.io/arighmt67-bit/item-app:v1
+    # Port mapping: host port 80 -> container port 8080
+    ports:
+      - "80:8080"
+    # item-app hanya berjalan setelah item-db diluncurkan
+    depends_on:
+      - item-db
+    # Restart policy: container selalu restart ketika terhenti (saran 2)
+    restart: always
+
+  # Service item-db: database MongoDB
+  item-db:
+    # Menggunakan image mongo:3 dari Docker Hub
+    image: mongo:3
+    # Memakai volume app-db dengan target /data/db di container
+    volumes:
+      - app-db:/data/db
+    # Restart policy: container selalu restart ketika terhenti (saran 2)
+    restart: always
+
+# 3. Mendefinisikan volume bernama app-db
+volumes:
+  app-db:

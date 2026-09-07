@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Konfigurasi SSH Server — Ari Rahmatra</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0d1117; --surface: #161b22; --surface2: #1f2937; --border: #30363d;
+      --text: #e6edf3; --text-muted: #8b949e; --text-dim: #484f58;
+      --green: #3fb950; --green-bg: #0f2d1a; --green-border: #1a4d2c;
+      --teal: #39d0c5; --teal-bg: #0d2926; --amber: #d29922; --amber-bg: #2d1f05;
+      --blue: #58a6ff; --blue-bg: #0d1f3c;
+      --mono: 'SF Mono','Cascadia Code','Fira Code',Consolas,monospace;
+      --sans: -apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+    }
+    body { font-family: var(--sans); background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh; }
+    .container { max-width: 820px; margin: 0 auto; padding: 0 24px; }
+    nav { border-bottom: 1px solid var(--border); padding: 16px 0; }
+    nav .inner { display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: var(--mono); font-size: 13px; color: var(--text-muted); }
+    .nav-logo span { color: var(--green); }
+    .nav-links { display: flex; gap: 24px; list-style: none; }
+    .nav-links a { font-size: 13px; color: var(--text-muted); text-decoration: none; }
+    .nav-links a:hover { color: var(--text); }
+    .hero { padding: 64px 0 48px; border-bottom: 1px solid var(--border); }
+    .eyebrow { font-family: var(--mono); font-size: 12px; color: var(--green); letter-spacing: 0.08em; margin-bottom: 20px; display: flex; align-items: center; gap: 8px; }
+    .eyebrow::before { content: ''; display: inline-block; width: 20px; height: 1px; background: var(--green); }
+    h1 { font-size: 36px; font-weight: 600; line-height: 1.2; margin-bottom: 16px; letter-spacing: -0.02em; }
+    h1 em { font-style: normal; color: var(--text-muted); }
+    .hero-desc { font-size: 16px; color: var(--text-muted); max-width: 560px; line-height: 1.7; margin-bottom: 28px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag { font-family: var(--mono); font-size: 11px; padding: 4px 10px; border: 1px solid var(--border); border-radius: 4px; color: var(--text-muted); }
+    section { padding: 48px 0; border-bottom: 1px solid var(--border); }
+    .section-label { font-family: var(--mono); font-size: 11px; color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 28px; }
+    .flow { display: flex; align-items: flex-start; gap: 0; overflow-x: auto; padding-bottom: 8px; }
+    .flow-item { display: flex; flex-direction: column; align-items: center; gap: 10px; min-width: 110px; }
+    .flow-connector { display: flex; align-items: center; padding-top: 18px; }
+    .flow-connector span { display: block; width: 32px; height: 1px; background: var(--border); position: relative; }
+    .flow-connector span::after { content: '›'; position: absolute; right: -6px; top: -8px; color: var(--text-dim); font-size: 14px; }
+    .flow-dot { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 13px; font-weight: 500; flex-shrink: 0; }
+    .dot-1 { background: var(--blue-bg); color: var(--blue); border: 1px solid #1a3a6b; }
+    .dot-2 { background: var(--amber-bg); color: var(--amber); border: 1px solid #4d3505; }
+    .dot-3 { background: var(--teal-bg); color: var(--teal); border: 1px solid #0d4040; }
+    .dot-4 { background: var(--surface2); color: var(--text-muted); border: 1px solid var(--border); }
+    .dot-5 { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+    .flow-text { font-size: 11px; color: var(--text-muted); text-align: center; line-height: 1.4; }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 20px; }
+    .card-num { font-family: var(--mono); font-size: 11px; color: var(--text-dim); margin-bottom: 10px; }
+    .card h3 { font-size: 14px; font-weight: 500; margin-bottom: 8px; }
+    .card p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+    .files-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px; }
+    .file-item { display: flex; align-items: center; gap: 12px; padding: 12px 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; }
+    .file-icon { font-family: var(--mono); font-size: 10px; padding: 3px 6px; border-radius: 3px; flex-shrink: 0; font-weight: 500; }
+    .icon-txt { background: var(--blue-bg); color: var(--blue); }
+    .icon-gpg { background: var(--amber-bg); color: var(--amber); }
+    .icon-json { background: var(--teal-bg); color: var(--teal); }
+    .icon-conf { background: var(--surface2); color: var(--text-muted); }
+    .icon-sh { background: var(--green-bg); color: var(--green); }
+    .file-name { font-family: var(--mono); font-size: 12px; color: var(--text); display: block; }
+    .file-desc { font-size: 11px; color: var(--text-dim); margin-top: 2px; }
+    .checklist { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .checklist li { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; }
+    .check-icon { width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; flex-shrink: 0; margin-top: 1px; }
+    .check-ok { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+    .check-bonus { background: var(--amber-bg); color: var(--amber); border: 1px solid #4d3505; }
+    .check-text { color: var(--text-muted); line-height: 1.5; }
+    .check-text strong { color: var(--text); font-weight: 500; }
+    .stars-row { display: flex; align-items: center; gap: 4px; margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--border); }
+    .star { color: var(--amber); font-size: 20px; }
+    .stars-label { font-size: 13px; color: var(--text-muted); margin-left: 8px; }
+    .terminal { background: #0d1117; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-top: 20px; }
+    .terminal-bar { background: var(--surface); padding: 10px 14px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--border); }
+    .dot-r { width: 10px; height: 10px; border-radius: 50%; background: #f87171; }
+    .dot-y { width: 10px; height: 10px; border-radius: 50%; background: var(--amber); }
+    .dot-g { width: 10px; height: 10px; border-radius: 50%; background: var(--green); }
+    .terminal-title { font-family: var(--mono); font-size: 11px; color: var(--text-dim); margin-left: 4px; }
+    .terminal-body { padding: 16px 18px; font-family: var(--mono); font-size: 13px; line-height: 1.8; }
+    .t-prompt { color: var(--green); }
+    .t-key { color: var(--teal); }
+    .t-val { color: var(--amber); }
+    .t-out { color: var(--text-muted); }
+    .t-success { color: var(--green); }
+    .t-comment { color: var(--text-dim); }
+    footer { padding: 32px 0; text-align: center; }
+    footer p { font-size: 13px; color: var(--text-dim); }
+    footer a { color: var(--text-muted); text-decoration: none; }
+    footer a:hover { color: var(--text); }
+    @media (max-width: 600px) { h1 { font-size: 26px; } .flow-item { min-width: 80px; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="container inner">
+    <span class="nav-logo">~/<span>arighmt67-bit</span></span>
+    <ul class="nav-links">
+      <li><a href="https://github.com/arighmt67-bit" target="_blank">GitHub</a></li>
+      <li><a href="https://www.dicoding.com" target="_blank">Dicoding</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="hero">
+    <div class="eyebrow">Dicoding — Menjadi Linux System Administrator</div>
+    <h1>Konfigurasi <em>SSH</em> Server</h1>
+    <p class="hero-desc">Implementasi SSH hardening end-to-end pada virtual machine Ubuntu Linux — dari manajemen user, key-based authentication, pengamanan sshd_config, hingga otomatisasi pembersihan log sistem dengan shell script.</p>
+    <div class="tags">
+      <span class="tag">Ubuntu 22.04 LTS</span>
+      <span class="tag">OpenSSH</span>
+      <span class="tag">GPG Encryption</span>
+      <span class="tag">Shell Scripting</span>
+      <span class="tag">systemd / journalctl</span>
+      <span class="tag">Multipass VM</span>
+    </div>
+  </div>
+
+  <section>
+    <div class="section-label">Alur pengerjaan</div>
+    <div class="flow">
+      <div class="flow-item">
+        <div class="flow-dot dot-1">01</div>
+        <div class="flow-text">Buat user<br><code style="font-size:10px">dicoding</code></div>
+      </div>
+      <div class="flow-connector"><span></span></div>
+      <div class="flow-item">
+        <div class="flow-dot dot-2">02</div>
+        <div class="flow-text">Login SSH<br>via password</div>
+      </div>
+      <div class="flow-connector"><span></span></div>
+      <div class="flow-item">
+        <div class="flow-dot dot-3">03</div>
+        <div class="flow-text">Buat &amp; salin<br>SSH key pair</div>
+      </div>
+      <div class="flow-connector"><span></span></div>
+      <div class="flow-item">
+        <div class="flow-dot dot-4">04</div>
+        <div class="flow-text">Hardening<br>sshd_config</div>
+      </div>
+      <div class="flow-connector"><span></span></div>
+      <div class="flow-item">
+        <div class="flow-dot dot-5">05</div>
+        <div class="flow-text">Login key-only<br>port 2000 ✓</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Yang dikonfigurasi</div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-num">01 — Autentikasi</div>
+        <h3>Key-based authentication</h3>
+        <p>SSH key pair ed25519 dibuat di mesin pertama, public key disalin ke mesin kedua via <code style="font-size:11px;color:#58a6ff">ssh-copy-id</code>. Autentikasi password dinonaktifkan sepenuhnya setelah key terkonfirmasi.</p>
+      </div>
+      <div class="card">
+        <div class="card-num">02 — Hardening</div>
+        <h3>Pengamanan sshd_config</h3>
+        <p>Port diganti dari 22 ke <strong style="color:#e6edf3">2000</strong>, root login dinonaktifkan, hanya public key yang diizinkan. Password auth di-set <code style="font-size:11px;color:#58a6ff">no</code> untuk mencegah brute-force.</p>
+      </div>
+      <div class="card">
+        <div class="card-num">03 — Dokumentasi</div>
+        <h3>Log aktivitas SSH</h3>
+        <p>Seluruh sesi SSH terekam di journalctl dan diekspor ke dua format: plain text untuk keterbacaan, dan JSON untuk keperluan parsing programatik.</p>
+      </div>
+      <div class="card">
+        <div class="card-num">04 — Otomatisasi</div>
+        <h3>Shell script pembersih log</h3>
+        <p>Script <code style="font-size:11px;color:#3fb950">hapus-log.sh</code> berjalan dalam loop <code style="font-size:11px;color:#58a6ff">while</code>, menampilkan disk usage journal, vacuum hingga 10 MB, lalu tampilkan hasilnya kembali.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Konfigurasi SSH yang diterapkan</div>
+    <div class="terminal">
+      <div class="terminal-bar">
+        <div class="dot-r"></div><div class="dot-y"></div><div class="dot-g"></div>
+        <span class="terminal-title">/etc/ssh/sshd_config</span>
+      </div>
+      <div class="terminal-body">
+        <div class="t-comment"># Port default diganti untuk menghindari scan otomatis</div>
+        <div><span class="t-key">Port</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-val">2000</span></div>
+        <br>
+        <div class="t-comment"># Hanya izinkan autentikasi via public key</div>
+        <div><span class="t-key">PubkeyAuthentication</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-val">yes</span></div>
+        <div><span class="t-key">PasswordAuthentication</span>&nbsp;&nbsp;<span class="t-val">no</span></div>
+        <br>
+        <div class="t-comment"># Root tidak boleh login langsung via SSH</div>
+        <div><span class="t-key">PermitRootLogin</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-val">no</span></div>
+      </div>
+    </div>
+    <div class="terminal" style="margin-top:12px">
+      <div class="terminal-bar">
+        <div class="dot-r"></div><div class="dot-y"></div><div class="dot-g"></div>
+        <span class="terminal-title">Verifikasi koneksi berhasil</span>
+      </div>
+      <div class="terminal-body">
+        <div><span class="t-prompt">ubuntu@dicoding-server2:~$</span> <span style="color:#e6edf3">ssh -p 2000 dicoding@localhost</span></div>
+        <div class="t-out">Authenticated to localhost ([127.0.0.1]:2000).</div>
+        <br>
+        <div><span class="t-prompt">dicoding@dicoding-server2:~$</span> <span class="t-comment"># login berhasil tanpa password</span></div>
+        <div class="t-success">✓ Key-based auth aktif &nbsp; ✓ Port 2000 &nbsp; ✓ Bukan root</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Berkas submission</div>
+    <div class="files-list">
+      <div class="file-item"><span class="file-icon icon-txt">.txt</span><div><span class="file-name">daftar-user.txt</span><div class="file-desc">Daftar user di sistem Linux</div></div></div>
+      <div class="file-item"><span class="file-icon icon-gpg">.gpg</span><div><span class="file-name">daftar-user.txt.gpg</span><div class="file-desc">Versi terenkripsi GPG</div></div></div>
+      <div class="file-item"><span class="file-icon icon-txt">.txt</span><div><span class="file-name">log-ssh.txt</span><div class="file-desc">Log aktivitas SSH (teks)</div></div></div>
+      <div class="file-item"><span class="file-icon icon-json">.json</span><div><span class="file-name">log-ssh.json</span><div class="file-desc">Log aktivitas SSH (JSON)</div></div></div>
+      <div class="file-item"><span class="file-icon icon-conf">conf</span><div><span class="file-name">sshd_config</span><div class="file-desc">Konfigurasi akhir SSH server</div></div></div>
+      <div class="file-item"><span class="file-icon icon-sh">.sh</span><div><span class="file-name">hapus-log.sh</span><div class="file-desc">Script otomatisasi log cleanup</div></div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">Penilaian submission</div>
+    <ul class="checklist">
+      <li><div class="check-icon check-ok">✓</div><div class="check-text"><strong>Kriteria 1</strong> — User <code style="font-size:12px;color:#58a6ff">dicoding</code> dengan full name "Dicoding Indonesia" berhasil dibuat</div></li>
+      <li><div class="check-icon check-ok">✓</div><div class="check-text"><strong>Kriteria 2</strong> — SSH dikonfigurasi penuh: login password → key pair → hardening → login key-only port 2000</div></li>
+      <li><div class="check-icon check-ok">✓</div><div class="check-text"><strong>Kriteria 3</strong> — Berkas <code style="font-size:12px;color:#58a6ff">daftar-user.txt</code> dan <code style="font-size:12px;color:#58a6ff">log-ssh.txt</code> tersedia lengkap</div></li>
+      <li><div class="check-icon check-bonus">★</div><div class="check-text"><strong>Saran 1</strong> — <code style="font-size:12px;color:#58a6ff">log-ssh.json</code> tersedia sebagai format tambahan</div></li>
+      <li><div class="check-icon check-bonus">★</div><div class="check-text"><strong>Saran 2</strong> — <code style="font-size:12px;color:#58a6ff">daftar-user.txt.gpg</code> tersedia sebagai versi terenkripsi</div></li>
+      <li><div class="check-icon check-bonus">★</div><div class="check-text"><strong>Saran 3</strong> — <code style="font-size:12px;color:#3fb950">hapus-log.sh</code> dengan komentar, baris baru, jeda, dan loop <code style="font-size:12px;color:#58a6ff">while</code></div></li>
+    </ul>
+    <div class="stars-row">
+      <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+      <span class="stars-label">Semua kriteria wajib terpenuhi + semua saran diterapkan</span>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="container">
+    <p>Ari Rahmatra &nbsp;·&nbsp; <a href="https://github.com/arighmt67-bit" target="_blank">arighmt67-bit</a> &nbsp;·&nbsp; Dicoding 2025</p>
+  </div>
+</footer>
+
+</body>
+</html>

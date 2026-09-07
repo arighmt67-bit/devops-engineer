@@ -1,0 +1,46 @@
+# =============================================================================
+# karsajobs-deployment.yml
+# Deployment untuk backend API Karsa Jobs (ditulis dengan Go).
+# Menghubungkan ke MongoDB via env MONGO_HOST/USER/PASS.
+# =============================================================================
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: karsajobs             # nama Deployment backend
+  labels:
+    app: karsajobs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: karsajobs
+  template:
+    metadata:
+      labels:
+        app: karsajobs        # label pod (dicocokkan Service backend)
+    spec:
+      containers:
+        - name: karsajobs
+          image: ghcr.io/arighmt67-bit/karsajobs:latest  # image backend dari GHCR
+          imagePullPolicy: IfNotPresent  # pakai image lokal bila sudah ada di node
+          ports:
+            - containerPort: 8080   # port aplikasi (APP_PORT)
+          env:
+            # Port aplikasi backend
+            - name: APP_PORT
+              value: "8080"
+            # Host MongoDB diambil dari nama MongoDB Service
+            - name: MONGO_HOST
+              value: "mongo"
+            # Username Mongo diambil dari Secret (key MONGO_ROOT_USERNAME)
+            - name: MONGO_USER
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-secret
+                  key: MONGO_ROOT_USERNAME
+            # Password Mongo diambil dari Secret (key MONGO_ROOT_PASSWORD)
+            - name: MONGO_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-secret
+                  key: MONGO_ROOT_PASSWORD

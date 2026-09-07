@@ -1,0 +1,150 @@
+{
+  "metadata": {
+    "generated_at": "2026-08-24T23:31:11.204652+00:00",
+    "source": "sshd auth log",
+    "total_entries": 20,
+    "description": "Log aktivitas SSH untuk Proyek Konfigurasi SSH Server"
+  },
+  "log_entries": [
+    {
+      "raw_message": "Server listening on 0.0.0.0 port 22.",
+      "event_type": "SERVER_LISTENING",
+      "user": null,
+      "source_ip": null,
+      "port": 22
+    },
+    {
+      "raw_message": "Connection closed by 127.0.0.1 port 39784",
+      "event_type": "CONNECTION_CLOSED",
+      "user": null,
+      "source_ip": "127.0.0.1",
+      "port": 39784
+    },
+    {
+      "raw_message": "Accepted password for dicoding from 127.0.0.1 port 39796 ssh2",
+      "event_type": "AUTH_SUCCESS_PASSWORD",
+      "user": "dicoding",
+      "source_ip": "127.0.0.1",
+      "port": 39796
+    },
+    {
+      "raw_message": "Received disconnect from 127.0.0.1 port 39796:11: disconnected by user",
+      "event_type": "SESSION_DISCONNECTED",
+      "user": null,
+      "source_ip": "127.0.0.1",
+      "port": 39796
+    },
+    {
+      "raw_message": "Disconnected from user dicoding 127.0.0.1 port 39796",
+      "event_type": "SESSION_DISCONNECTED",
+      "user": "dicoding",
+      "source_ip": "127.0.0.1",
+      "port": 39796
+    },
+    {
+      "raw_message": "Connection closed by authenticating user dicoding 127.0.0.1 port 34522 [preauth]",
+      "event_type": "CONNECTION_CLOSED",
+      "user": "dicoding",
+      "source_ip": "127.0.0.1",
+      "port": 34522
+    },
+    {
+      "raw_message": "Connection closed by authenticating user dicoding 127.0.0.1 port 34536 [preauth]",
+      "event_type": "CONNECTION_CLOSED",
+      "user": "dicoding",
+      "source_ip": "127.0.0.1",
+      "port": 34536
+    },
+    {
+      "raw_message": "Accepted password for dicoding from 127.0.0.1 port 34546 ssh2",
+      "event_type": "AUTH_SUCCESS_PASSWORD",
+      "user": "dicoding",
+      "source_ip": "127.0.0.1",
+      "port": 34546
+    },
+    {
+      "raw_message": "Received disconnect from 127.0.0.1 port 34546:11: disconnected by user",
+      "event_type": "SESSION_DISCONNECTED",
+      "user": null,
+      "source_ip": "127.0.0.1",
+      "port": 34546
+    },
+    {
+      "raw_message": "Disconnected from user dicoding 127.0.0.1 port 34546",
+      "event_type": "SESSION_DISCONNECTED",
+      "user": "dicoding",
+      "source_ip": "127.0.0.1",
+      "port": 34546
+    },
+    {
+      "raw_message": "Accepted publickey for dicoding from 127.0.0.1 port 34554 ssh2: ED25519 SHA256:D/UPpwLFwA0GvBufD+5c3lp67lB2a+34JXBLp00iFvw",
+      "event_type": "AUTH_SUCCESS_PUBLICKEY",
+      "user": "dicoding",
+      "source_ip": "127.0.0.1",
+      "port": 34554
+    },
+    {
+      "raw_message": "Received disconnect from 127.0.0.1 port 34554:11: disconnected by user",
+      "event_type": "SESSION_DISCONNECTED",
+      "user": null,
+      "source_ip": "127.0.0.1",
+      "port": 34554
+    },
+    {
+      "raw_message": "Disconnected from user dicoding 127.0.0.1 port 34554",
+      "event_type": "SESSION_DISCONNECTED",
+      "user": "dicoding",
+      "source_ip": "127.0.0.1",
+      "port": 34554
+    },
+    {
+      "raw_message": "Server listening on 0.0.0.0 port 2000.",
+      "event_type": "SERVER_LISTENING",
+      "user": null,
+      "source_ip": null,
+      "port": 2000
+    },
+    {
+      "raw_message": "Connection closed by 127.0.0.1 port 56722",
+      "event_type": "CONNECTION_CLOSED",
+      "user": null,
+      "source_ip": "127.0.0.1",
+      "port": 56722
+    },
+    {
+      "raw_message": "Accepted publickey for dicoding from 127.0.0.1 port 56736 ssh2: ED25519 SHA256:D/UPpwLFwA0GvBufD+5c3lp67lB2a+34JXBLp00iFvw",
+      "event_type": "AUTH_SUCCESS_PUBLICKEY",
+      "user": "dicoding",
+      "source_ip": "127.0.0.1",
+      "port": 56736
+    },
+    {
+      "raw_message": "Received disconnect from 127.0.0.1 port 56736:11: disconnected by user",
+      "event_type": "SESSION_DISCONNECTED",
+      "user": null,
+      "source_ip": "127.0.0.1",
+      "port": 56736
+    },
+    {
+      "raw_message": "Disconnected from user dicoding 127.0.0.1 port 56736",
+      "event_type": "SESSION_DISCONNECTED",
+      "user": "dicoding",
+      "source_ip": "127.0.0.1",
+      "port": 56736
+    },
+    {
+      "raw_message": "Connection closed by authenticating user dicoding 127.0.0.1 port 56744 [preauth]",
+      "event_type": "CONNECTION_CLOSED",
+      "user": "dicoding",
+      "source_ip": "127.0.0.1",
+      "port": 56744
+    },
+    {
+      "raw_message": "Connection closed by authenticating user root 127.0.0.1 port 56756 [preauth]",
+      "event_type": "CONNECTION_CLOSED",
+      "user": "root",
+      "source_ip": "127.0.0.1",
+      "port": 56756
+    }
+  ]
+}

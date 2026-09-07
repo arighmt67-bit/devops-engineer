@@ -1,0 +1,24 @@
+Log Aktivitas SSH - Proyek Konfigurasi SSH Server
+Digenerate pada: 24 August 2026 23:30:46 UTC
+Sumber log: sshd (auth log)
+============================================================
+Server listening on 0.0.0.0 port 22.
+Connection closed by 127.0.0.1 port 39784
+Accepted password for dicoding from 127.0.0.1 port 39796 ssh2
+Received disconnect from 127.0.0.1 port 39796:11: disconnected by user
+Disconnected from user dicoding 127.0.0.1 port 39796
+Connection closed by authenticating user dicoding 127.0.0.1 port 34522 [preauth]
+Connection closed by authenticating user dicoding 127.0.0.1 port 34536 [preauth]
+Accepted password for dicoding from 127.0.0.1 port 34546 ssh2
+Received disconnect from 127.0.0.1 port 34546:11: disconnected by user
+Disconnected from user dicoding 127.0.0.1 port 34546
+Accepted publickey for dicoding from 127.0.0.1 port 34554 ssh2: ED25519 SHA256:D/UPpwLFwA0GvBufD+5c3lp67lB2a+34JXBLp00iFvw
+Received disconnect from 127.0.0.1 port 34554:11: disconnected by user
+Disconnected from user dicoding 127.0.0.1 port 34554
+Server listening on 0.0.0.0 port 2000.
+Connection closed by 127.0.0.1 port 56722
+Accepted publickey for dicoding from 127.0.0.1 port 56736 ssh2: ED25519 SHA256:D/UPpwLFwA0GvBufD+5c3lp67lB2a+34JXBLp00iFvw
+Received disconnect from 127.0.0.1 port 56736:11: disconnected by user
+Disconnected from user dicoding 127.0.0.1 port 56736
+Connection closed by authenticating user dicoding 127.0.0.1 port 56744 [preauth]
+Connection closed by authenticating user root 127.0.0.1 port 56756 [preauth]

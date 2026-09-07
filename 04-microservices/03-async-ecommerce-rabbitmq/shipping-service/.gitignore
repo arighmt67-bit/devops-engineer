@@ -1,0 +1,2 @@
+# Mengabaikan direktori dependensi Node.js agar tidak ikut masuk ke Git.
+node_modules

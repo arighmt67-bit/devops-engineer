@@ -1,0 +1,69 @@
+# =============================================================================
+# CI pipeline untuk branch karsajobs (backend Go)
+# Menerapkan Saran ke-4: Continuous Integration via GitHub Actions.
+# Langkah wajib sesuai kriteria: lint-dockerfile -> test-app -> build-app-karsajobs
+# Image di-push ke GitHub Container Registry (GHCR) memakai GITHUB_TOKEN bawaan.
+# =============================================================================
+name: CI Karsa Jobs Backend
+
+# Jalankan pipeline saat ada push atau pull request ke branch karsajobs
+on:
+  push:
+    branches: [ karsajobs ]
+  pull_request:
+    branches: [ karsajobs ]
+
+jobs:
+  # ---------------------------------------------------------------------------
+  # Job 1: lint-dockerfile -> instal hadolint lalu jalankan ke Dockerfile
+  # ---------------------------------------------------------------------------
+  lint-dockerfile:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout kode
+        uses: actions/checkout@v4
+      - name: Instal hadolint
+        run: |
+          # Unduh binary hadolint dan jadikan executable
+          sudo wget -O /bin/hadolint https://github.com/hadolint/hadolint/releases/download/v2.12.0/hadolint-Linux-x86_64
+          sudo chmod +x /bin/hadolint
+      - name: Jalankan hadolint pada Dockerfile
+        run: hadolint Dockerfile
+
+  # ---------------------------------------------------------------------------
+  # Job 2: test-app -> menjalankan unit test backend
+  # ---------------------------------------------------------------------------
+  test-app:
+    runs-on: ubuntu-latest
+    needs: lint-dockerfile        # berjalan setelah lint sukses
+    steps:
+      - name: Checkout kode
+        uses: actions/checkout@v4
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.15'
+      - name: Jalankan unit test
+        # Perintah unit test backend sesuai ketentuan kriteria
+        run: go test -v -short --count=1 $(go list ./...)
+
+  # ---------------------------------------------------------------------------
+  # Job 3: build-app-karsajobs -> build image dan push ke GHCR
+  # ---------------------------------------------------------------------------
+  build-app-karsajobs:
+    runs-on: ubuntu-latest
+    needs: test-app               # berjalan setelah test sukses
+    permissions:
+      contents: read
+      packages: write             # izin push image ke GHCR
+    steps:
+      - name: Checkout kode
+        uses: actions/checkout@v4
+      - name: Login ke GHCR
+        # Login memakai GITHUB_TOKEN otomatis (tidak perlu PAT manual)
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      - name: Build dan push image backend
+        run: |
+          IMAGE=ghcr.io/${{ github.repository_owner }}/karsajobs:latest
+          docker build -t $IMAGE .
+          docker push $IMAGE

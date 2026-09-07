@@ -1,0 +1,10 @@
+    1  nano script.sh
+    2  chmod +x script.sh
+    3  bash script.sh
+    4  free -m
+    5  df -BG
+    6  df -h
+    7  df -h | awk 'NR==1 {print "Filesystem", "Use%"} NR>1 && $1 !~ /tmpfs/ {print $1, $5}'
+    8  cat script.sh
+    9  bash script.sh
+   10  history > history.txt

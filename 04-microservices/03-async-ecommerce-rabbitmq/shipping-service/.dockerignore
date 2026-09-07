@@ -1,0 +1,8 @@
+# Mengabaikan direktori dependensi agar tidak ikut tersalin ke image.
+node_modules
+# Mengabaikan berkas log agar image tetap bersih.
+*.log
+# Mengabaikan metadata Git yang tidak diperlukan saat runtime.
+.git
+# Mengabaikan berkas environment lokal demi keamanan kredensial.
+.env

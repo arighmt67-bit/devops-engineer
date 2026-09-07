@@ -1,0 +1,57 @@
+# =============================================================================
+# mongo-statefulset.yml
+# StatefulSet menjalankan MongoDB dengan penyimpanan persisten + konfigurasi.
+# Mount: PersistentVolume -> /data/db, ConfigMap -> /config, Secret -> /etc/mongo-credentials
+# Kredensial root dibaca dari file (via *_FILE) yang bersumber dari Secret.
+# =============================================================================
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mongo                 # nama StatefulSet
+spec:
+  serviceName: mongo         # merujuk headless Service 'mongo'
+  replicas: 1                # cukup 1 replika untuk submission
+  selector:
+    matchLabels:
+      app: mongo
+  template:
+    metadata:
+      labels:
+        app: mongo           # label pod (dicocokkan Service & selector)
+    spec:
+      containers:
+        - name: mongo
+          image: mongo:4.4   # image resmi MongoDB
+          args: ["--config", "/config/mongo.conf"]  # pakai konfigurasi dari ConfigMap
+          ports:
+            - containerPort: 27017
+          env:
+            # Username root dibaca dari file hasil mount Secret
+            - name: MONGO_INITDB_ROOT_USERNAME_FILE
+              value: /etc/mongo-credentials/MONGO_ROOT_USERNAME
+            # Password root dibaca dari file hasil mount Secret
+            - name: MONGO_INITDB_ROOT_PASSWORD_FILE
+              value: /etc/mongo-credentials/MONGO_ROOT_PASSWORD
+          volumeMounts:
+            # Persistent Volume untuk data MongoDB
+            - name: mongo-data
+              mountPath: /data/db
+            # ConfigMap (mongo.conf) di-mount ke /config
+            - name: mongo-config
+              mountPath: /config
+            # Secret (kredensial) di-mount ke /etc/mongo-credentials
+            - name: mongo-credentials
+              mountPath: /etc/mongo-credentials
+      volumes:
+        # Volume ConfigMap berisi berkas mongo.conf
+        - name: mongo-config
+          configMap:
+            name: mongo-configmap
+        # Volume Secret berisi username & password root
+        - name: mongo-credentials
+          secret:
+            secretName: mongo-secret
+        # Volume persisten mengacu ke PVC
+        - name: mongo-data
+          persistentVolumeClaim:
+            claimName: mongo-pvc

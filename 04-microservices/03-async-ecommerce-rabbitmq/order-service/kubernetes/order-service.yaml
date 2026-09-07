@@ -1,0 +1,78 @@
+# Menetapkan versi API Kubernetes untuk objek Deployment.
+apiVersion: apps/v1
+# Menyatakan jenis objek yang dibuat adalah Deployment.
+kind: Deployment
+# Bagian metadata yang mendeskripsikan identitas objek.
+metadata:
+  # Menetapkan nama Deployment untuk order-service.
+  name: order-service
+  # Memberi label agar objek mudah dikelompokkan dan dicari.
+  labels:
+    app: order-service
+# Bagian spesifikasi yang mengatur perilaku Deployment.
+spec:
+  # Menjalankan satu replica Pod order-service.
+  replicas: 1
+  # Menentukan Pod mana yang dikelola oleh Deployment ini.
+  selector:
+    matchLabels:
+      app: order-service
+  # Template cetakan Pod yang akan dibuat.
+  template:
+    # Metadata Pod berisi label yang dicocokkan oleh selector di atas.
+    metadata:
+      labels:
+        app: order-service
+    # Spesifikasi isi Pod.
+    spec:
+      # Daftar container yang berjalan di dalam Pod.
+      containers:
+        # Menetapkan nama container order-service.
+        - name: order-service
+          # Mengambil container image dari GitHub Packages, bukan image lokal.
+          image: ghcr.io/arighmt67-bit/order-service:latest
+          # Selalu menarik image terbaru dari registry saat Pod dibuat.
+          imagePullPolicy: Always
+          # Daftar port yang dibuka oleh container.
+          ports:
+            # Port aplikasi order-service.
+            - containerPort: 3000
+          # Menyuntikkan environment variable ke dalam container.
+          env:
+            # Menetapkan port aplikasi sesuai kebutuhan starter project.
+            - name: PORT
+              value: "3000"
+            # Mengarahkan koneksi AMQP ke Service RabbitMQ di dalam cluster.
+            - name: AMQP_URL
+              value: "amqp://rabbitmq:5672"
+          # Mengatur permintaan dan batas sumber daya agar hemat memori.
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "50m"
+            limits:
+              memory: "128Mi"
+              cpu: "200m"
+---
+# Menetapkan versi API Kubernetes untuk objek Service.
+apiVersion: v1
+# Menyatakan jenis objek yang dibuat adalah Service.
+kind: Service
+# Bagian metadata yang mendeskripsikan identitas Service.
+metadata:
+  # Menetapkan nama Service untuk order-service.
+  name: order-service
+# Spesifikasi Service.
+spec:
+  # Memilih Pod bertanda label app: order-service sebagai target.
+  selector:
+    app: order-service
+  # Daftar port yang diekspos oleh Service.
+  ports:
+    # Memetakan port Service ke port container.
+    - port: 3000
+      targetPort: 3000
+      # Menetapkan port statis pada node agar dapat diakses dari luar cluster.
+      nodePort: 30000
+  # Menentukan tipe Service sesuai kebutuhan akses.
+  type: NodePort
