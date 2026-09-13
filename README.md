@@ -73,3 +73,11 @@ devops-engineer/
 * **GitHub**: [@arighmt67-bit](https://github.com/arighmt67-bit)
 * **LinkedIn**: [Ari Rahmat Romadhon](https://www.linkedin.com/in/arirahmatr/)
 * **Platform**: Dicoding Indonesia - DevOps Learning Path
+
+### 05. Configuration Management (Ansible)
+* **Path**: `05-automation-ansible/`
+* **Fitur**: Idempotent provisioning, automated apt security patching, UFW firewall policy hardening, systemd service management.
+
+### 06. SRE Runbooks & Governance
+* **Path**: `06-sre-runbooks/`
+* **Fitur**: SOP IAM User Access Lifecycle (Least-Privilege & MFA), Disaster Recovery Plan (DRP RTO/RPO) & Incident Response.

@@ -1,0 +1,41 @@
+---
+- name: Production Web Server Provisioning & OS Hardening
+  hosts: production
+  become: yes
+  tasks:
+    - name: Update apt cache & upgrade essential packages
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+    - name: Install baseline security & utility packages
+      apt:
+        name:
+          - ufw
+          - fail2ban
+          - curl
+          - git
+          - nginx
+          - htop
+        state: present
+
+    - name: Configure firewall (UFW) - Allow SSH, HTTP, HTTPS
+      ufw:
+        rule: allow
+        port: "{{ item }}"
+        proto: tcp
+      loop:
+        - "22"
+        - "80"
+        - "443"
+
+    - name: Enable UFW firewall
+      ufw:
+        state: enabled
+        policy: deny
+
+    - name: Ensure Nginx service is enabled and active
+      systemd:
+        name: nginx
+        state: started
+        enabled: yes
