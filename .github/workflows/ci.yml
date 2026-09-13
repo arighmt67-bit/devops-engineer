@@ -27,7 +27,7 @@ jobs:
 
       - name: Terraform Format Check
         run: |
-          cd 03-continuous-integration/02-provisioning-iac
+          cd 05-infrastructure-as-code/terraform-aws-microservices
           terraform fmt -check
 
       - name: Validate Kubernetes Manifests
