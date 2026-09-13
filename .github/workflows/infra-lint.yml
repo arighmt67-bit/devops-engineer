@@ -129,8 +129,8 @@ jobs:
 
       - name: Verify Live HTTP Health Probe and Endpoint
         run: |
-          echo "Executing automated curl smoke test on /threads..."
-          HTTP_STATUS=$(curl -s -o /tmp/smoke_out.json -w "%{http_code}" http://localhost:5000/threads)
+          echo "Executing automated curl smoke test on health endpoint /..."
+          HTTP_STATUS=$(curl -s -o /tmp/smoke_out.json -w "%{http_code}" http://localhost:5000/)
           echo "HTTP Response Code: $HTTP_STATUS"
           cat /tmp/smoke_out.json
           

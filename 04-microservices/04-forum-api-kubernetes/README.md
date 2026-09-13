@@ -7,7 +7,7 @@ Modul ini mengorkestrasi container backend `forum-api` (dipull dari OCI registry
 2. **High Availability**: Deployment backend disetel dengan `replicas: 2` untuk failover redundancy.
 3. **Resource Quotas (Anti-OOM)**: Alokasi `requests` dan `limits` CPU serta RAM ketat untuk mencegah pod starvation.
 4. **Self-Healing via Health Probes**:
-   - `livenessProbe`: Memeriksa kelayakan proses via endpoint `/threads`. Jika container freeze atau deadlock, kubelet me-restart pod secara otomatis.
+   - `livenessProbe`: Memeriksa kelayakan proses via endpoint `/`. Jika container freeze atau deadlock, kubelet me-restart pod secara otomatis.
    - `readinessProbe`: Menahan trafik ke pod sampai koneksi database Postgres terjalin sempurna.
 
 ## Panduan Uji Lokal via Colima / Minikube
