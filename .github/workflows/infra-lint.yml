@@ -122,7 +122,7 @@ jobs:
             -e ACCESS_TOKEN_KEY=super_..._key \
             -e REFRESH_TOKEN_KEY=super_..._key \
             -e ACCESS_TOKEN_AGE=*** \
-            ghcr.io/arighmt67-bit/forum-api:v1.0.0
+            ghcr.io/arighmt67-bit/forum-api:1.0.0
 
           echo "Waiting for backend initialization..."
           sleep 6

@@ -1,6 +1,6 @@
 # Forum API Kubernetes Orchestration and SRE Probes
 
-Modul ini mengorkestrasi container backend `forum-api` (dipull dari OCI registry publik `ghcr.io/arighmt67-bit/forum-api:v1.0.0`) beserta stateful database PostgreSQL ke dalam cluster Kubernetes.
+Modul ini mengorkestrasi container backend `forum-api` (dipull dari OCI registry publik `ghcr.io/arighmt67-bit/forum-api:1.0.0`) beserta stateful database PostgreSQL ke dalam cluster Kubernetes.
 
 ## Fitur dan Standar SRE yang Diterapkan
 1. **Separation of Concerns**: Konfigurasi non-sensitif diisolasi di `ConfigMap`, kredensial rahasia dienkripsi di `Secret`.

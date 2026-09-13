@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: forum-api
-          image: ghcr.io/arighmt67-bit/forum-api:v1.0.0
+          image: ghcr.io/arighmt67-bit/forum-api:1.0.0
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 5000
