@@ -1,4 +1,4 @@
-name: Infrastructure Lint & CI Validation
+name: Infrastructure CI, IaC Validation and Container Smoke Test
 
 on:
   push:
@@ -44,15 +44,107 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Kubeval / Kubeconform
+      - name: Set up Kubeconform
         run: |
           curl -sL https://github.com/yannh/kubeconform/releases/latest/download/kubeconform-linux-amd64.tar.gz | tar xz
           sudo mv kubeconform /usr/local/bin/
 
       - name: Validate Kubernetes Manifests
         run: |
-          echo "Scanning and validating Kubernetes YAML manifests..."
-          find . -type d -name "kubernetes" | while read -r k8s_dir; do
-            echo "Inspecting manifests in: $k8s_dir"
-            kubeconform -summary -ignore-missing-schemas -schema-location default "$k8s_dir"
+          echo "Scanning and validating all Kubernetes YAML manifests..."
+          find . -type f \( -name "*.yaml" -o -name "*.yml" \) -path "*/kubernetes/*" | while read -r manifest; do
+            echo "Validating: $manifest"
+            kubeconform -summary -ignore-missing-schemas -schema-location default "$manifest"
           done
+          echo "Validating 04-forum-api-kubernetes..."
+          kubeconform -summary -ignore-missing-schemas -schema-location default 04-microservices/04-forum-api-kubernetes
+
+  terraform-lint:
+    name: Terraform IaC Lint and Security Validation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.8.0
+
+      - name: Terraform Format Check
+        run: |
+          terraform -chdir=05-infrastructure-as-code/terraform-aws-microservices fmt -check
+
+      - name: Terraform Validate
+        run: |
+          terraform -chdir=05-infrastructure-as-code/terraform-aws-microservices init -backend=false
+          terraform -chdir=05-infrastructure-as-code/terraform-aws-microservices validate
+
+  container-smoke-test:
+    name: Containerized Forum API Smoke Test (GHCR)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create Isolated Docker Network
+        run: docker network create smoke-net
+
+      - name: Launch PostgreSQL Service Container
+        run: |
+          docker run -d --name postgres-db \
+            --network smoke-net \
+            --network-alias postgres-service \
+            -e POSTGRES_DB=forumapi \
+            -e POSTGRES_USER=forum_user \
+            -e POSTGRES_PASSWORD=*** \
+            postgres:14-alpine
+          
+          echo "Waiting for postgres health..."
+          until docker exec postgres-db pg_isready -U forum_user -d forumapi; do
+            sleep 2
+          done
+          echo "PostgreSQL is online and healthy!"
+
+      - name: Pull and Launch Forum API from GHCR
+        run: |
+          docker run -d --name forum-api-app \
+            --network smoke-net \
+            -p 5000:5000 \
+            -e NODE_ENV=production \
+            -e PORT=5000 \
+            -e HOST=0.0.0.0 \
+            -e PGHOST=postgres-service \
+            -e PGPORT=5432 \
+            -e PGUSER=forum_user \
+            -e PGPASSWORD=*** \
+            -e PGDATABASE=forumapi \
+            -e ACCESS_TOKEN_KEY=super_..._key \
+            -e REFRESH_TOKEN_KEY=super_..._key \
+            -e ACCESS_TOKEN_AGE=*** \
+            ghcr.io/arighmt67-bit/forum-api:v1.0.0
+
+          echo "Waiting for backend initialization..."
+          sleep 6
+
+      - name: Verify Live HTTP Health Probe and Endpoint
+        run: |
+          echo "Executing automated curl smoke test on /threads..."
+          HTTP_STATUS=$(curl -s -o /tmp/smoke_out.json -w "%{http_code}" http://localhost:5000/threads)
+          echo "HTTP Response Code: $HTTP_STATUS"
+          cat /tmp/smoke_out.json
+          
+          if [ "$HTTP_STATUS" -eq 200 ] || [ "$HTTP_STATUS" -eq 201 ]; then
+            echo "SUCCESS: Forum API container is healthy and serving HTTP traffic!"
+          else
+            echo "FAILURE: Unexpected HTTP response: $HTTP_STATUS"
+            docker logs forum-api-app
+            exit 1
+          fi
+
+      - name: Teardown Test Containers
+        if: always()
+        run: |
+          docker stop forum-api-app postgres-db || true
+          docker rm -f forum-api-app postgres-db || true
+          docker network rm smoke-net || true

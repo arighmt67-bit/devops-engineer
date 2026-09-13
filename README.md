@@ -22,10 +22,13 @@ devops-engineer/
 │   ├── Jenkinsfile                     # Pipeline CI/CD Proyek Akhir (Build -> Test -> Approval -> Deploy)
 │   ├── jenkins/                        # Pipeline CI Proyek Pertama
 │   └── submission-artifacts/           # Log eksekusi, status container, & screenshot verifikasi
-└── 04-microservices/                   # Arsitektur Aplikasi Microservices
-    ├── 01-item-app-docker-compose/     # Multi-container Node.js + MongoDB via Docker Compose
-    ├── 02-karsajobs-kubernetes/        # Multi-service Go & Vue.js orkestrasi di Kubernetes
-    └── 03-async-ecommerce-rabbitmq/    # Asynchronous Event-Driven Architecture dengan RabbitMQ
+├── 04-microservices/                   # Arsitektur Aplikasi Microservices & Kubernetes
+│   ├── 01-item-app-docker-compose/     # Multi-container Node.js + MongoDB via Docker Compose
+│   ├── 02-karsajobs-kubernetes/        # Multi-service Go & Vue.js orkestrasi di Kubernetes
+│   ├── 03-async-ecommerce-rabbitmq/    # Asynchronous Event-Driven Architecture dengan RabbitMQ
+│   └── 04-forum-api-kubernetes/        # Production K8s Manifest (GHCR Image, Secrets, SRE Probes)
+└── 05-infrastructure-as-code/          # Infrastructure as Code (IaC) & Cloud Provisioning
+    └── terraform-aws-microservices/    # Modular Terraform AWS (VPC, SG, Observability, Auto-Destroy)
 ```
 
 ---
