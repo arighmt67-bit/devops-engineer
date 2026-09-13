@@ -1,5 +1,7 @@
 # DevOps Engineer Portfolio Showcase
 
+[![Infrastructure Lint & CI Validation](https://github.com/arighmt67-bit/devops-engineer/actions/workflows/infra-lint.yml/badge.svg)](https://github.com/arighmt67-bit/devops-engineer/actions/workflows/infra-lint.yml)
+
 Repositori ini merupakan showcase terpadu dan monorepo portofolio untuk seluruh submission proyek pada **Dicoding DevOps Learning Path**, yang mencakup 4 pilar utama rekayasa infrastruktur:
 1. **Computer Networking** (Jaringan Komputer & Reverse Proxy)
 2. **Linux System Administration** (Otomasi Bash & Hardening Server SSH)

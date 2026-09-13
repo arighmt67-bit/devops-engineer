@@ -1,0 +1,58 @@
+name: Infrastructure Lint & CI Validation
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  shellcheck:
+    name: Shell Scripts Lint (ShellCheck)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run ShellCheck
+        run: |
+          echo "Scanning all bash/shell scripts (*.sh)..."
+          find . -type f -name "*.sh" -not -path '*/.*' -print0 | xargs -0 -r shellcheck -S error
+
+  docker-compose-lint:
+    name: Validate Docker Compose Configuration
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Validate Docker Compose Config
+        run: |
+          echo "Validating docker-compose.yml files..."
+          while IFS= read -r compose_file; do
+            echo "Checking: $compose_file"
+            docker compose -f "$compose_file" config --quiet
+          done < <(find . -type f \( -name "docker-compose.yml" -o -name "docker-compose.yaml" \) -not -path '*/.*')
+
+  kubernetes-manifest-lint:
+    name: Validate Kubernetes YAML Manifests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Kubeval / Kubeconform
+        run: |
+          curl -sL https://github.com/yannh/kubeconform/releases/latest/download/kubeconform-linux-amd64.tar.gz | tar xz
+          sudo mv kubeconform /usr/local/bin/
+
+      - name: Validate Kubernetes Manifests
+        run: |
+          echo "Scanning and validating Kubernetes YAML manifests..."
+          find . -type d -name "kubernetes" | while read -r k8s_dir; do
+            echo "Inspecting manifests in: $k8s_dir"
+            kubeconform -summary -ignore-missing-schemas -schema-location default "$k8s_dir"
+          done
