@@ -1,0 +1,68 @@
+{
+  "status": "passed",
+  "integration": {
+    "run_id": "bf7e255594f643d8a9457dd6a5e8e991",
+    "passed": 41,
+    "total": 41
+  },
+  "checks": [
+    {
+      "name": "actual_vm_secrets_absent",
+      "passed": true
+    },
+    {
+      "name": "unchanged_pinned_app",
+      "passed": true,
+      "commit": "040a9bef5aa857b0251bf41a805dd75fc91f44ab"
+    },
+    {
+      "name": "extracted_cli_help",
+      "command": [
+        "/opt/homebrew/opt/python@3.11/bin/python3.11",
+        "lab.py",
+        "--help"
+      ],
+      "cwd": "/var/folders/xt/6rd3y0hx32v2mkt0y3drwx7c0000gp/T/opslab-rerun-v4_zh1qf/06-infrastructure-operations-db-recovery",
+      "exit_code": 0,
+      "stdout": "usage: lab.py [-h] {up,test,status,stop}\n\nSmall stdlib host CLI, permanently bound to ops-db-lab (no host\nservice/firewall edits).\n\npositional arguments:\n  {up,test,status,stop}\n\noptions:\n  -h, --help            show this help message and exit\n",
+      "stderr": ""
+    },
+    {
+      "name": "extracted_idempotent_up",
+      "command": [
+        "/opt/homebrew/opt/python@3.11/bin/python3.11",
+        "lab.py",
+        "up"
+      ],
+      "cwd": "/var/folders/xt/6rd3y0hx32v2mkt0y3drwx7c0000gp/T/opslab-rerun-v4_zh1qf/06-infrastructure-operations-db-recovery",
+      "exit_code": 0,
+      "stdout": "Existing matching installation verified; unchanged.\nHTTP ready (not DB-aware; run test for DB validation).\n",
+      "stderr": ""
+    },
+    {
+      "name": "extracted_full_live_test",
+      "command": [
+        "/opt/homebrew/opt/python@3.11/bin/python3.11",
+        "lab.py",
+        "test"
+      ],
+      "cwd": "/var/folders/xt/6rd3y0hx32v2mkt0y3drwx7c0000gp/T/opslab-rerun-v4_zh1qf/06-infrastructure-operations-db-recovery",
+      "exit_code": 0,
+      "stdout": "{\"report\": \"/var/folders/xt/6rd3y0hx32v2mkt0y3drwx7c0000gp/T/tmp71c4ka0f/fixture_run.json\", \"status\": \"failed\", \"passed\": 0, \"total\": 0}\nTEST FIXTURE ONLY safety tests\nTEST FIXTURE ONLY\nTEST FIXTURE ONLY safety tests\nTEST FIXTURE ONLY safety tests\nTEST FIXTURE ONLY safety tests\nTEST FIXTURE ONLY safety tests\nHTTP ready (not DB-aware; run test for DB validation).\n{\"report\": \"/var/lib/ops-db-lab/evidence/bf7e255594f643d8a9457dd6a5e8e991.json\", \"status\": \"passed\", \"passed\": 41, \"total\": 41}\n",
+      "stderr": ""
+    },
+    {
+      "name": "independent_after_zip_run",
+      "command": [
+        "/opt/homebrew/opt/python@3.11/bin/python3.11",
+        "/Users/arirahmatr/.hermes/handoffs/verify-ops-db-live.py",
+        "/Users/arirahmatr/projects/devops-engineer/06-infrastructure-operations-db-recovery/evidence/independent-after-zip.json"
+      ],
+      "cwd": "/var/folders/xt/6rd3y0hx32v2mkt0y3drwx7c0000gp/T/opslab-rerun-v4_zh1qf/06-infrastructure-operations-db-recovery",
+      "exit_code": 0,
+      "stdout": "{\n  \"independent_live_checks\": 37,\n  \"passed\": true,\n  \"report\": \"/Users/arirahmatr/projects/devops-engineer/06-infrastructure-operations-db-recovery/evidence/independent-after-zip.json\",\n  \"versions\": {\n    \"kernel\": \"Linux 6.8.0-142-generic\",\n    \"postgres\": \"16.15 (Ubuntu 16.15-0ubuntu0.24.04.1)\"\n  }\n}\n",
+      "stderr": ""
+    }
+  ],
+  "note": "Full live CLI exercised from extracted ZIP; final archive adds only evidence."
+}

@@ -1,0 +1,19 @@
+{
+  "at": "2026-10-10T00:05:27.522618+00:00",
+  "cwd": "/Users/arirahmatr/projects/devops-engineer/06-infrastructure-operations-db-recovery",
+  "command": [
+    "/Library/Developer/CommandLineTools/usr/bin/python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-v",
+    "-k",
+    "test_up_"
+  ],
+  "interpreter": "/Library/Developer/CommandLineTools/usr/bin/python3",
+  "exit_code": 1,
+  "stdout": "HTTP ready (not DB-aware; run test for DB validation).\n\nHTTP ready (not DB-aware; run test for DB validation).\n",
+  "stderr": "test_up_bootstraps_fixed_package_with_bytecode_disabled (test_host.HostSafetyTests) ... FAIL\ntest_up_refuses_existing_unmarked_installation_before_upload (test_host.HostSafetyTests) ... FAIL\n\n======================================================================\nFAIL: test_up_bootstraps_fixed_package_with_bytecode_disabled (test_host.HostSafetyTests)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/Users/arirahmatr/projects/devops-engineer/06-infrastructure-operations-db-recovery/tests/test_host.py\", line 57, in test_up_bootstraps_fixed_package_with_bytecode_disabled\n    self.assertIn(['multipass', 'exec', 'ops-db-lab', '--', 'sudo', 'python3', '-B',\nAssertionError: ['multipass', 'exec', 'ops-db-lab', '--', 'sudo', 'python3', '-B', '/home/ubuntu/ops-db-package/bootstrap.py'] not found in [['multipass', 'launch', '24.04', '--name', 'ops-db-lab', '--cpus', '2', '--memory', '1G', '--disk', '8G'], ['multipass', 'exec', 'ops-db-lab', '--', 'true'], ['multipass', 'exec', 'ops-db-lab', '--', 'sudo', 'python3', '/home/ubuntu/ops-db-lab-runner/bootstrap.py'], ['multipass', 'exec', 'ops-db-lab', '--', 'curl', '--fail', '--silent', 'http://127.0.0.1:5050/']]\n\n======================================================================\nFAIL: test_up_refuses_existing_unmarked_installation_before_upload (test_host.HostSafetyTests)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/Users/arirahmatr/projects/devops-engineer/06-infrastructure-operations-db-recovery/tests/test_host.py\", line 44, in test_up_refuses_existing_unmarked_installation_before_upload\n    lab.up()\nAssertionError: RuntimeError not raised\n\n----------------------------------------------------------------------\nRan 2 tests in 0.004s\n\nFAILED (failures=2)\n"
+}

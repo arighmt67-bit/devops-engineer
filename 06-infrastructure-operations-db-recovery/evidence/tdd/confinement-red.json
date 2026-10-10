@@ -1,0 +1,18 @@
+{
+  "at": "2026-10-09T23:52:23.758480+00:00",
+  "cwd": "/Users/arirahmatr/projects/devops-engineer/06-infrastructure-operations-db-recovery",
+  "command": [
+    "/Library/Developer/CommandLineTools/usr/bin/python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-p",
+    "test_safety.py",
+    "-v"
+  ],
+  "exit_code": 1,
+  "stdout": "",
+  "stderr": "test_archive_must_resolve_inside_backup_root (test_safety.SafetyTests) ... test_preexisting_restore_target_is_refused (test_safety.SafetyTests) ... ok\ntest_restore_name_is_strict_new_namespace (test_safety.SafetyTests) ... ok\n\n======================================================================\nFAIL: test_archive_must_resolve_inside_backup_root (test_safety.SafetyTests) (value='/var/folders/xt/6rd3y0hx32v2mkt0y3drwx7c0000gp/T/tmptq_4w8do/outside.dump')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/Users/arirahmatr/projects/devops-engineer/06-infrastructure-operations-db-recovery/tests/test_safety.py\", line 35, in test_archive_must_resolve_inside_backup_root\n    policy.validate_archive(value, root, digest)\nAssertionError: ValueError not raised\n\n======================================================================\nFAIL: test_archive_must_resolve_inside_backup_root (test_safety.SafetyTests) (value='/var/folders/xt/6rd3y0hx32v2mkt0y3drwx7c0000gp/T/tmptq_4w8do/backups/escape.dump')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/Users/arirahmatr/projects/devops-engineer/06-infrastructure-operations-db-recovery/tests/test_safety.py\", line 35, in test_archive_must_resolve_inside_backup_root\n    policy.validate_archive(value, root, digest)\nAssertionError: ValueError not raised\n\n======================================================================\nFAIL: test_archive_must_resolve_inside_backup_root (test_safety.SafetyTests) (value='/var/folders/xt/6rd3y0hx32v2mkt0y3drwx7c0000gp/T/tmptq_4w8do/backups')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/Users/arirahmatr/projects/devops-engineer/06-infrastructure-operations-db-recovery/tests/test_safety.py\", line 35, in test_archive_must_resolve_inside_backup_root\n    policy.validate_archive(value, root, digest)\nAssertionError: ValueError not raised\n\n----------------------------------------------------------------------\nRan 3 tests in 0.003s\n\nFAILED (failures=3)\n"
+}

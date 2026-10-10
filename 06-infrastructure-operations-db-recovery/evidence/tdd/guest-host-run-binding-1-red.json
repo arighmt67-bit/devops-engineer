@@ -1,0 +1,19 @@
+{
+  "at": "2026-10-10T00:47:24.256076+00:00",
+  "cwd": "/Users/arirahmatr/projects/devops-engineer/06-infrastructure-operations-db-recovery",
+  "command": [
+    "/Library/Developer/CommandLineTools/usr/bin/python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-v",
+    "-k",
+    "host_run_id_binds"
+  ],
+  "interpreter": "/Library/Developer/CommandLineTools/usr/bin/python3",
+  "exit_code": 1,
+  "stdout": "",
+  "stderr": "test_host_run_id_binds_report_and_rejects_unsafe_identifiers (test_run_binding.RunBindingTests) ... FAIL\n\n======================================================================\nFAIL: test_host_run_id_binds_report_and_rejects_unsafe_identifiers (test_run_binding.RunBindingTests)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/Users/arirahmatr/projects/devops-engineer/06-infrastructure-operations-db-recovery/tests/test_run_binding.py\", line 9, in test_host_run_id_binds_report_and_rejects_unsafe_identifiers\n    self.assertTrue(hasattr(guest, 'bind_run_id'), 'host run binding missing')\nAssertionError: False is not true : host run binding missing\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nFAILED (failures=1)\n"
+}

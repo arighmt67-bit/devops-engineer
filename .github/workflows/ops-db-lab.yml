@@ -1,0 +1,43 @@
+name: Operations DB Lab — Offline Safety Tests
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '06-infrastructure-operations-db-recovery/**'
+      - '.github/workflows/ops-db-lab.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - '06-infrastructure-operations-db-recovery/**'
+      - '.github/workflows/ops-db-lab.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  offline-safety:
+    name: Offline safety (Python ${{ matrix.python }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.9', '3.11', '3.13']
+    defaults:
+      run:
+        working-directory: 06-infrastructure-operations-db-recovery
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Run offline regression tests
+        run: python -B -m unittest discover -s tests -v
+      - name: Check Python syntax and side-effect-free CLI help
+        run: |
+          python -B -c "from pathlib import Path; files = sorted(Path('.').rglob('*.py')); [compile(p.read_bytes(), str(p), 'exec') for p in files]; print(f'Syntax valid: {len(files)} Python files')"
+          python -B lab.py --help
+
+# Live integration needs an isolated Multipass guest and is intentionally not run here.

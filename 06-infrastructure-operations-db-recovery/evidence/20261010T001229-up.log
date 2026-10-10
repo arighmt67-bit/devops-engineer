@@ -1,0 +1,3 @@
+action=up
+exit_code=0
+Bootstrap complete: pinned unchanged app, protected VM-only secrets, nonroot service.

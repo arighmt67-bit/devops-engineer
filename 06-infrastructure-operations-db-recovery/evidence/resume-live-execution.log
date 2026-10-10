@@ -1,0 +1,10 @@
+exit_code=0
+{"report": "/var/folders/xt/6rd3y0hx32v2mkt0y3drwx7c0000gp/T/tmp3lfm5c5n/fixture_run.json", "status": "failed", "passed": 0, "total": 0}
+TEST FIXTURE ONLY safety tests
+TEST FIXTURE ONLY
+TEST FIXTURE ONLY safety tests
+TEST FIXTURE ONLY safety tests
+TEST FIXTURE ONLY safety tests
+TEST FIXTURE ONLY safety tests
+HTTP ready (not DB-aware; run test for DB validation).
+{"report": "/var/lib/ops-db-lab/evidence/8144b2ad76cd418281d78e5a8637bccc.json", "status": "passed", "passed": 41, "total": 41}

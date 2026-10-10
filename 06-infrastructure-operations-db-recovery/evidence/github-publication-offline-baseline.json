@@ -1,0 +1,70 @@
+{
+  "status": "passed",
+  "source_zip": "/Users/arirahmatr/Devops/Labs/infrastructure-operations-db-recovery-hardened.zip",
+  "source_zip_sha256": "6a41903397312234044c9c306346cd999092360d668a9dcb522c86ffc093677b",
+  "offline_methods": 32,
+  "unexpected_infrastructure_calls": 0,
+  "checks": [
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.11/bin/python3.11",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "cwd": "/var/folders/xt/6rd3y0hx32v2mkt0y3drwx7c0000gp/T/ops-db-github-offline-0mnf51mz/06-infrastructure-operations-db-recovery",
+      "exit_code": 0,
+      "stdout": "{\"report\": \"/var/folders/xt/6rd3y0hx32v2mkt0y3drwx7c0000gp/T/tmpbxbfltxe/fixture_run.json\", \"status\": \"failed\", \"passed\": 0, \"total\": 0}\nTEST FIXTURE ONLY safety tests\nTEST FIXTURE ONLY\nTEST FIXTURE ONLY safety tests\nTEST FIXTURE ONLY safety tests\nTEST FIXTURE ONLY safety tests\nTEST FIXTURE ONLY safety tests\nHTTP ready (not DB-aware; run test for DB validation).\n",
+      "stderr": "test_cleanup_attempts_exact_rule_removal_and_restart_even_on_failure (test_fault_cleanup.FaultCleanupTests.test_cleanup_attempts_exact_rule_removal_and_restart_even_on_failure) ... ok\ntest_deliberate_restart_resets_systemd_start_limit_before_restart (test_guest.GuestSafetyTests.test_deliberate_restart_resets_systemd_start_limit_before_restart) ... ok\ntest_fingerprint_covers_nonpublic_rows_and_schema_definition (test_guest.GuestSafetyTests.test_fingerprint_covers_nonpublic_rows_and_schema_definition) ... ok\ntest_restore_revokes_public_database_privileges_before_loading_archive (test_guest.GuestSafetyTests.test_restore_revokes_public_database_privileges_before_loading_archive) ... ok\ntest_restored_access_keeps_reader_readonly_and_app_without_ddl (test_guest.GuestSafetyTests.test_restored_access_keeps_reader_readonly_and_app_without_ddl) ... ok\ntest_summary_written_to_fixed_protected_path_even_on_failure (test_guest.GuestSafetyTests.test_summary_written_to_fixed_protected_path_even_on_failure) ... ok\ntest_existing_unmarked_or_partial_package_is_never_overwritten (test_host.HostSafetyTests.test_existing_unmarked_or_partial_package_is_never_overwritten) ... ok\ntest_fresh_failed_report_is_retained_with_cli_failure (test_host.HostSafetyTests.test_fresh_failed_report_is_retained_with_cli_failure) ... TEST FIXTURE ONLY guest failure\nok\ntest_fresh_status_exit_mismatch_is_never_published (test_host.HostSafetyTests.test_fresh_status_exit_mismatch_is_never_published) ... ok\ntest_guest_report_rejects_path_injection_and_secret_fields (test_host.HostSafetyTests.test_guest_report_rejects_path_injection_and_secret_fields) ... ok\ntest_stale_success_is_never_published_for_either_guest_exit (test_host.HostSafetyTests.test_stale_success_is_never_published_for_either_guest_exit) ... ok\ntest_test_fetches_fixed_summary_via_sudo_not_guest_report_paths (test_host.HostSafetyTests.test_test_fetches_fixed_summary_via_sudo_not_guest_report_paths) ... ok\ntest_up_bootstraps_fixed_package_with_bytecode_disabled (test_host.HostSafetyTests.test_up_bootstraps_fixed_package_with_bytecode_disabled) ... ok\ntest_up_refuses_existing_unmarked_installation_before_upload (test_host.HostSafetyTests.test_up_refuses_existing_unmarked_installation_before_upload) ... ok\ntest_upload_uses_recursive_fixed_package_without_overwrite (test_host.HostSafetyTests.test_upload_uses_recursive_fixed_package_without_overwrite) ... ok\ntest_matching_marker_does_not_hide_installed_source_mutation (test_install_probe.InstallationProbeTests.test_matching_marker_does_not_hide_installed_source_mutation) ... ok\ntest_installation_accepts_archive_fixture_with_runtime_node_modules (test_installation.InstallationTests.test_installation_accepts_archive_fixture_with_runtime_node_modules) ... ok\ntest_installation_bootstrap_accepts_exact_archive_fixture (test_installation.InstallationTests.test_installation_bootstrap_accepts_exact_archive_fixture) ... ok\ntest_installation_bootstrap_rejects_mutation_before_unchanged_claim (test_installation.InstallationTests.test_installation_bootstrap_rejects_mutation_before_unchanged_claim) ... ok\ntest_installation_rejects_missing_tracked_files_or_directories (test_installation.InstallationTests.test_installation_rejects_missing_tracked_files_or_directories) ... ok\ntest_installation_rejects_modified_tracked_contents (test_installation.InstallationTests.test_installation_rejects_modified_tracked_contents) ... ok\ntest_installation_rejects_noncanonical_pinned_tree_extra_entries (test_installation.InstallationTests.test_installation_rejects_noncanonical_pinned_tree_extra_entries) ... ok\ntest_installation_rejects_noncanonical_pinned_tree_symlinks (test_installation.InstallationTests.test_installation_rejects_noncanonical_pinned_tree_symlinks) ... ok\ntest_installation_validates_source_before_inspecting_installation (test_installation.InstallationTests.test_installation_validates_source_before_inspecting_installation) ... ok\ntest_http_clients_use_hostname_for_ipv4_or_ipv6_localhost (test_loopback.LoopbackTests.test_http_clients_use_hostname_for_ipv4_or_ipv6_localhost) ... ok\ntest_host_run_id_binds_report_and_rejects_unsafe_identifiers (test_run_binding.RunBindingTests.test_host_run_id_binds_report_and_rejects_unsafe_identifiers) ... ok\ntest_archive_must_resolve_inside_backup_root (test_safety.SafetyTests.test_archive_must_resolve_inside_backup_root) ... ok\ntest_preexisting_restore_target_is_refused (test_safety.SafetyTests.test_preexisting_restore_target_is_refused) ... ok\ntest_restore_name_is_strict_new_namespace (test_safety.SafetyTests.test_restore_name_is_strict_new_namespace) ... ok\ntest_snapshot_members_cannot_escape_or_ship_extra_files (test_safety.SafetyTests.test_snapshot_members_cannot_escape_or_ship_extra_files) ... ok\ntest_source_pin_and_hash_are_both_required (test_safety.SafetyTests.test_source_pin_and_hash_are_both_required) ... ok\ntest_tampered_hash_refused_before_restore (test_safety.SafetyTests.test_tampered_hash_refused_before_restore) ... ok\n\n----------------------------------------------------------------------\nRan 32 tests in 1.068s\n\nOK\n"
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.11/bin/python3.11",
+        "-B",
+        "lab.py",
+        "--help"
+      ],
+      "cwd": "/var/folders/xt/6rd3y0hx32v2mkt0y3drwx7c0000gp/T/ops-db-github-offline-0mnf51mz/06-infrastructure-operations-db-recovery",
+      "exit_code": 0,
+      "stdout": "usage: lab.py [-h] {up,test,status,stop}\n\nSmall stdlib host CLI, permanently bound to ops-db-lab (no host\nservice/firewall edits).\n\npositional arguments:\n  {up,test,status,stop}\n\noptions:\n  -h, --help            show this help message and exit\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/python@3.11/bin/python3.11",
+        "-B",
+        "-c",
+        "from pathlib import Path; ps = sorted(Path('.').rglob('*.py')); [compile(p.read_bytes(), str(p), 'exec') for p in ps]; print(f'Syntax valid: {len(ps)} Python files')"
+      ],
+      "cwd": "/var/folders/xt/6rd3y0hx32v2mkt0y3drwx7c0000gp/T/ops-db-github-offline-0mnf51mz/06-infrastructure-operations-db-recovery",
+      "exit_code": 0,
+      "stdout": "Syntax valid: 14 Python files\n",
+      "stderr": ""
+    }
+  ],
+  "workflow_validation": {
+    "command": [
+      "actionlint",
+      "-shellcheck=",
+      "-pyflakes=",
+      ".github/workflows/ops-db-lab.yml"
+    ],
+    "version": "v1.7.12",
+    "official_asset_sha256_verified": true,
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "remote_source_provenance": {
+    "status": "passed",
+    "repository": "arighmt67-bit/forum-api",
+    "commit": "040a9bef5aa857b0251bf41a805dd75fc91f44ab",
+    "archive_sha256": "8b1ae8f080ec17872aac98d52b296b27d334ec2f15eb1c999dbb2bbfb77fb8ae",
+    "remote_pinned_source_blobs_verified": 126,
+    "exact_required_inventory": true
+  }
+}

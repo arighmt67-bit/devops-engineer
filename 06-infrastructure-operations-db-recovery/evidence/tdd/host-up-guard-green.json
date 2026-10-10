@@ -1,0 +1,19 @@
+{
+  "at": "2026-10-10T00:06:29.707624+00:00",
+  "cwd": "/Users/arirahmatr/projects/devops-engineer/06-infrastructure-operations-db-recovery",
+  "command": [
+    "/Library/Developer/CommandLineTools/usr/bin/python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-v",
+    "-k",
+    "test_up_"
+  ],
+  "interpreter": "/Library/Developer/CommandLineTools/usr/bin/python3",
+  "exit_code": 0,
+  "stdout": "HTTP ready (not DB-aware; run test for DB validation).\n",
+  "stderr": "test_up_bootstraps_fixed_package_with_bytecode_disabled (test_host.HostSafetyTests) ... ok\ntest_up_refuses_existing_unmarked_installation_before_upload (test_host.HostSafetyTests) ... ok\n\n----------------------------------------------------------------------\nRan 2 tests in 0.003s\n\nOK\n"
+}

@@ -1,0 +1,56 @@
+{
+  "at": "2026-10-10T00:58:47.930735+00:00",
+  "scope": "guest-only ops-db-lab; no commit/push",
+  "pure_tests": {
+    "status": "passed",
+    "methods": 32,
+    "evidence": "tdd/resume-full-02-final.json"
+  },
+  "integration": {
+    "status": "passed",
+    "run_id": "8144b2ad76cd418281d78e5a8637bccc",
+    "passed": 41,
+    "total": 41
+  },
+  "cleanup_edge_cases": {
+    "status": "passed",
+    "count": 3,
+    "evidence": "live-cleanup-failure-paths.json",
+    "limitation": "real rule and restart effects, simulated timeout/body boundary failures; deletion/restart failures offline only"
+  },
+  "independent_live": {
+    "status": "passed",
+    "checks": 36,
+    "evidence": "independent-after-hardening.json"
+  },
+  "changes": [
+    "network fault exact-rule cleanup and independent restart",
+    "host invocation run-id freshness and status/exit consistency",
+    "read-only installed-source exact byte/inventory/symlink validator in host probe and bootstrap"
+  ],
+  "tdd_evidence": {
+    "cleanup": [
+      "tdd/fault-cleanup-resilience-1-red.json",
+      "tdd/fault-cleanup-resilience-2-green.json",
+      "tdd/fault-cleanup-probe-timeout-1-green.json",
+      "tdd/fault-cleanup-restart-failure-1-green.json"
+    ],
+    "freshness": [
+      "tdd/host-freshness-a9b713-RED.json",
+      "tdd/host-freshness-a9b713-GREEN.json",
+      "tdd/host-status-exit-a9b714-RED.json",
+      "tdd/host-status-exit-a9b714-GREEN.json"
+    ],
+    "installed_source": [
+      "tdd/installation-tracked-integrity-20261010-ari02-red.json",
+      "tdd/installation-tracked-integrity-20261010-ari02-green.json",
+      "tdd/installation-canonical-inventory-20261010-ari03-red.json",
+      "tdd/resume-canonical-01-green.json",
+      "tdd/resume-install-probe-01-red.json",
+      "tdd/resume-install-probe-02-green.json",
+      "tdd/resume-probe-trust-01-red.json",
+      "tdd/resume-probe-trust-01-green.json"
+    ]
+  },
+  "zip_rerun_evidence": "zip-rerun-verification.json"
+}

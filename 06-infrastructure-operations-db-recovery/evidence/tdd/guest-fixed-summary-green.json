@@ -1,0 +1,19 @@
+{
+  "at": "2026-10-10T00:12:44.847171+00:00",
+  "cwd": "/Users/arirahmatr/projects/devops-engineer/06-infrastructure-operations-db-recovery",
+  "command": [
+    "/Library/Developer/CommandLineTools/usr/bin/python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-v",
+    "-k",
+    "test_summary_written"
+  ],
+  "interpreter": "/Library/Developer/CommandLineTools/usr/bin/python3",
+  "exit_code": 0,
+  "stdout": "{\"report\": \"/var/folders/xt/6rd3y0hx32v2mkt0y3drwx7c0000gp/T/tmp6bi8p073/fixture_run.json\", \"status\": \"failed\", \"passed\": 0, \"total\": 0}\n",
+  "stderr": "test_summary_written_to_fixed_protected_path_even_on_failure (test_guest.GuestSafetyTests) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nOK\n"
+}

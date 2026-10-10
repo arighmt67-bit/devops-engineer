@@ -1,0 +1,19 @@
+{
+  "at": "2026-10-10T00:38:33.796816+00:00",
+  "cwd": "/Users/arirahmatr/projects/devops-engineer/06-infrastructure-operations-db-recovery",
+  "command": [
+    "/Library/Developer/CommandLineTools/usr/bin/python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-v",
+    "-k",
+    "restored_access_keeps"
+  ],
+  "interpreter": "/Library/Developer/CommandLineTools/usr/bin/python3",
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "test_restored_access_keeps_reader_readonly_and_app_without_ddl (test_guest.GuestSafetyTests) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n"
+}

@@ -1,0 +1,396 @@
+{
+  "run_id": "20261010073938_3ad51e",
+  "fixture_label": "TEST FIXTURE ONLY \u2014 synthetic forum / positive amount",
+  "checks": [
+    {
+      "name": "initial_source_configuration",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "systemd_active_nonroot",
+      "passed": true,
+      "details": {
+        "state": "active",
+        "pid": "7992",
+        "uid": "999"
+      }
+    },
+    {
+      "name": "outsider_cannot_read_secrets",
+      "passed": true,
+      "details": {
+        "mode": "0o640",
+        "returncode": 1
+      }
+    },
+    {
+      "name": "localhost_listener",
+      "passed": true,
+      "details": [
+        "LISTEN 0      511            [::1]:5050         [::]:*    users:((\"node\",pid=7992,fd=21))                       "
+      ]
+    },
+    {
+      "name": "hostname_resolution_tcp",
+      "passed": true,
+      "details": {
+        "localhost": [
+          "127.0.0.1",
+          "::1"
+        ],
+        "port": 5432
+      }
+    },
+    {
+      "name": "api_register",
+      "passed": true,
+      "details": {
+        "http_status": 201
+      }
+    },
+    {
+      "name": "api_login",
+      "passed": true,
+      "details": {
+        "http_status": 201
+      }
+    },
+    {
+      "name": "api_create_thread",
+      "passed": true,
+      "details": {
+        "http_status": 201
+      }
+    },
+    {
+      "name": "api_read_thread",
+      "passed": true,
+      "details": {
+        "http_status": 200,
+        "thread_id": "thread--Bfalghvn9SuS_YAsu-eR"
+      }
+    },
+    {
+      "name": "constraint_primary_key",
+      "passed": true,
+      "details": {
+        "sqlstate": "23505",
+        "exit_code": 3
+      }
+    },
+    {
+      "name": "constraint_unique",
+      "passed": true,
+      "details": {
+        "sqlstate": "23505",
+        "exit_code": 3
+      }
+    },
+    {
+      "name": "constraint_not_null",
+      "passed": true,
+      "details": {
+        "sqlstate": "23502",
+        "exit_code": 3
+      }
+    },
+    {
+      "name": "constraint_foreign_key",
+      "passed": true,
+      "details": {
+        "sqlstate": "23503",
+        "exit_code": 3
+      }
+    },
+    {
+      "name": "constraint_check_positive_fixture",
+      "passed": true,
+      "details": {
+        "sqlstate": "23514",
+        "scope": "fixture_20261010073938_3ad51e.positive_amount TEST FIXTURE"
+      }
+    },
+    {
+      "name": "commit_rollback",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "failed_transaction_no_partial_records",
+      "passed": true,
+      "details": {
+        "sqlstates": [
+          "23505",
+          "25P02"
+        ],
+        "psql_exit": 0,
+        "transaction_result": "BEGIN\nINSERT 0 1\nROLLBACK"
+      }
+    },
+    {
+      "name": "app_cannot_create_table",
+      "passed": true,
+      "details": {
+        "sqlstate": "42501"
+      }
+    },
+    {
+      "name": "readonly_select",
+      "passed": true,
+      "details": {
+        "rows": 1
+      }
+    },
+    {
+      "name": "readonly_update_denied",
+      "passed": true,
+      "details": {
+        "sqlstate": "42501"
+      }
+    },
+    {
+      "name": "sql_join_aggregate",
+      "passed": true,
+      "details": {
+        "username": "fixture_20261010073938_3ad51e",
+        "threads": 1
+      }
+    },
+    {
+      "name": "index_benchmark",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "wrong_password_authentication_error",
+      "passed": true,
+      "details": {
+        "exit_code": 2,
+        "diagnosis": "psql: error: connection to server at \"127.0.0.1\", port 5432 failed: FATAL:  password authentication failed for user \"opslab_app\"\nconnection to server at \"127.0.0.1\", port 5432 failed: FATAL:  password authentication failed for user \"opslab_app\""
+      }
+    },
+    {
+      "name": "http_health_not_db_readiness",
+      "passed": true,
+      "details": {
+        "root_http": 200,
+        "thread_http": 500,
+        "pg_isready": "127.0.0.1:5432 - accepting connections",
+        "iptables": "-P OUTPUT ACCEPT\n-A OUTPUT -p tcp -m tcp --dport 5432 -m owner --uid-owner 999 -m comment --comment ops-db-lab-20261010073938_3ad51e -j REJECT --reject-with tcp-reset",
+        "systemd": "active"
+      }
+    },
+    {
+      "name": "network_refused_not_password_error",
+      "passed": true,
+      "details": {
+        "exit_code": 2,
+        "diagnosis": "psql: error: connection to server at \"127.0.0.1\", port 5432 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?"
+      }
+    },
+    {
+      "name": "network_fault_recovered",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "service_stop_http_unavailable",
+      "passed": true,
+      "details": {
+        "systemd": "inactive",
+        "http_status": 0
+      }
+    },
+    {
+      "name": "service_restart_thread_restored",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "restore_gates_before_createdb",
+      "passed": true,
+      "details": {
+        "rejections": [
+          "source",
+          "invalid",
+          "tampered_hash",
+          "outside_root"
+        ],
+        "target_not_created": true
+      }
+    },
+    {
+      "name": "restore_all_non_system_rows_and_schema",
+      "passed": true,
+      "details": {
+        "source": {
+          "schema_sha256": "3d1d69286b6e2e857bae5ebac6ace810bdb1954b1fed4cd8abb5a017ebbff992",
+          "tables": {
+            "fixture_20261010072215_f5c41b.positive_amount": {
+              "rows": 1,
+              "sha256": "3cc9e8385695c330e4c3fbd9fc77804d55c8170bb4ab808fb5360b71240928db"
+            },
+            "fixture_20261010073938_3ad51e.positive_amount": {
+              "rows": 1,
+              "sha256": "3cc9e8385695c330e4c3fbd9fc77804d55c8170bb4ab808fb5360b71240928db"
+            },
+            "public.authentications": {
+              "rows": 2,
+              "sha256": "819563d0db5be7111e0d4c08a3aa55f3f82b27fdfe8828501cfd9d2ef5d2889d"
+            },
+            "public.comment_likes": {
+              "rows": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "public.comments": {
+              "rows": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "public.pgmigrations": {
+              "rows": 6,
+              "sha256": "1457ba7bc42af0d2eb50a38106bf3a1738f2b485bb846d91456a9118a38a1adf"
+            },
+            "public.replies": {
+              "rows": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "public.threads": {
+              "rows": 2,
+              "sha256": "df7b6bd7dbe182cf7164dc1189cc06b77851dbb2c8e4955503f36bbc65d70570"
+            },
+            "public.users": {
+              "rows": 2,
+              "sha256": "bc84ba916dc43563a574dfcd6caba82ea38bc90f0c1dc3a9945f025e088d3edc"
+            }
+          }
+        },
+        "restored": {
+          "schema_sha256": "3d1d69286b6e2e857bae5ebac6ace810bdb1954b1fed4cd8abb5a017ebbff992",
+          "tables": {
+            "fixture_20261010072215_f5c41b.positive_amount": {
+              "rows": 1,
+              "sha256": "3cc9e8385695c330e4c3fbd9fc77804d55c8170bb4ab808fb5360b71240928db"
+            },
+            "fixture_20261010073938_3ad51e.positive_amount": {
+              "rows": 1,
+              "sha256": "3cc9e8385695c330e4c3fbd9fc77804d55c8170bb4ab808fb5360b71240928db"
+            },
+            "public.authentications": {
+              "rows": 2,
+              "sha256": "819563d0db5be7111e0d4c08a3aa55f3f82b27fdfe8828501cfd9d2ef5d2889d"
+            },
+            "public.comment_likes": {
+              "rows": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "public.comments": {
+              "rows": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "public.pgmigrations": {
+              "rows": 6,
+              "sha256": "1457ba7bc42af0d2eb50a38106bf3a1738f2b485bb846d91456a9118a38a1adf"
+            },
+            "public.replies": {
+              "rows": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "public.threads": {
+              "rows": 2,
+              "sha256": "df7b6bd7dbe182cf7164dc1189cc06b77851dbb2c8e4955503f36bbc65d70570"
+            },
+            "public.users": {
+              "rows": 2,
+              "sha256": "bc84ba916dc43563a574dfcd6caba82ea38bc90f0c1dc3a9945f025e088d3edc"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "restored_relationships",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "existing_valid_restore_target_refused",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "restored_opslab_app_public_ddl_denied",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "restored_opslab_app_temp_ddl_denied",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "restored_opslab_reader_public_ddl_denied",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "restored_opslab_reader_temp_ddl_denied",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "restored_reader_select",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "restored_reader_update_denied",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "app_reads_restored_database",
+      "passed": true,
+      "details": {
+        "http_status": 200,
+        "database": "opslab_restore_20261010073938_3ad51e"
+      }
+    },
+    {
+      "name": "app_connection_really_uses_restore",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "source_configuration_reverted",
+      "passed": true,
+      "details": null
+    },
+    {
+      "name": "app_connection_really_returns_to_source",
+      "passed": true,
+      "details": null
+    }
+  ],
+  "observations": {
+    "index_benchmark": {
+      "label": "TEST FIXTURE temporary 50000 rows, no universal speedup claim",
+      "actual_psql_output": "SELECT 50000\nANALYZE\n[\n  {\n    \"Plan\": {\n      \"Node Type\": \"Seq Scan\",\n      \"Parallel Aware\": false,\n      \"Async Capable\": false,\n      \"Relation Name\": \"index_fixture\",\n      \"Alias\": \"index_fixture\",\n      \"Startup Cost\": 0.00,\n      \"Total Cost\": 1073.00,\n      \"Plan Rows\": 1,\n      \"Plan Width\": 37,\n      \"Actual Startup Time\": 1.321,\n      \"Actual Total Time\": 1.324,\n      \"Actual Rows\": 1,\n      \"Actual Loops\": 1,\n      \"Filter\": \"(id = 49999)\",\n      \"Rows Removed by Filter\": 49999\n    },\n    \"Planning Time\": 0.040,\n    \"Triggers\": [\n    ],\n    \"Execution Time\": 1.331\n  }\n]\nCREATE INDEX\n[\n  {\n    \"Plan\": {\n      \"Node Type\": \"Index Scan\",\n      \"Parallel Aware\": false,\n      \"Async Capable\": false,\n      \"Scan Direction\": \"Forward\",\n      \"Index Name\": \"index_fixture_id_idx\",\n      \"Relation Name\": \"index_fixture\",\n      \"Alias\": \"index_fixture\",\n      \"Startup Cost\": 0.29,\n      \"Total Cost\": 8.31,\n      \"Plan Rows\": 1,\n      \"Plan Width\": 37,\n      \"Actual Startup Time\": 0.005,\n      \"Actual Total Time\": 0.006,\n      \"Actual Rows\": 1,\n      \"Actual Loops\": 1,\n      \"Index Cond\": \"(id = 49999)\",\n      \"Rows Removed by Index Recheck\": 0\n    },\n    \"Planning Time\": 0.041,\n    \"Triggers\": [\n    ],\n    \"Execution Time\": 0.009\n  }\n]\n"
+    },
+    "journal": "2026-10-10T07:22:17+07:00 ops-db-lab systemd[1]: forum-api-lab.service: Deactivated successfully.\n2026-10-10T07:22:17+07:00 ops-db-lab systemd[1]: Stopped forum-api-lab.service - Forum API Infrastructure Operations Lab.\n2026-10-10T07:22:17+07:00 ops-db-lab systemd[1]: Started forum-api-lab.service - Forum API Infrastructure Operations Lab.\n2026-10-10T07:22:17+07:00 ops-db-lab systemd[1]: Stopping forum-api-lab.service - Forum API Infrastructure Operations Lab...\n2026-10-10T07:22:17+07:00 ops-db-lab systemd[1]: forum-api-lab.service: Deactivated successfully.\n2026-10-10T07:22:17+07:00 ops-db-lab systemd[1]: Stopped forum-api-lab.service - Forum API Infrastructure Operations Lab.\n2026-10-10T07:22:17+07:00 ops-db-lab systemd[1]: Started forum-api-lab.service - Forum API Infrastructure Operations Lab.\n2026-10-10T07:22:17+07:00 ops-db-lab systemd[1]: Stopping forum-api-lab.service - Forum API Infrastructure Operations Lab...\n2026-10-10T07:22:17+07:00 ops-db-lab systemd[1]: forum-api-lab.service: Deactivated successfully.\n2026-10-10T07:22:17+07:00 ops-db-lab systemd[1]: Stopped forum-api-lab.service - Forum API Infrastructure Operations Lab.\n2026-10-10T07:22:18+07:00 ops-db-lab systemd[1]: Started forum-api-lab.service - Forum API Infrastructure Operations Lab.\n2026-10-10T07:22:19+07:00 ops-db-lab systemd[1]: Stopping forum-api-lab.service - Forum API Infrastructure Operations Lab...\n2026-10-10T07:22:19+07:00 ops-db-lab systemd[1]: forum-api-lab.service: Deactivated successfully.\n2026-10-10T07:22:19+07:00 ops-db-lab systemd[1]: Stopped forum-api-lab.service - Forum API Infrastructure Operations Lab.\n2026-10-10T07:22:19+07:00 ops-db-lab systemd[1]: Started forum-api-lab.service - Forum API Infrastructure Operations Lab.\n2026-10-10T07:22:19+07:00 ops-db-lab systemd[1]: Stopping forum-api-lab.service - Forum API Infrastructure Operations Lab...\n2026-10-10T07:22:19+07:00 ops-db-lab systemd[1]: forum-api-lab.service: Deactivated successfully.\n2026-10-10T07:22:19+07:00 ops-db-lab systemd[1]: Stopped forum-api-lab.service - Forum API Infrastructure Operations Lab.\n2026-10-10T07:22:19+07:00 ops-db-lab systemd[1]: forum-api-lab.service: Start request repeated too quickly.\n2026-10-10T07:22:19+07:00 ops-db-lab systemd[1]: forum-api-lab.service: Failed with result 'start-limit-hit'.\n2026-10-10T07:22:19+07:00 ops-db-lab systemd[1]: Failed to start forum-api-lab.service - Forum API Infrastructure Operations Lab.\n2026-10-10T07:36:08+07:00 ops-db-lab systemd[1]: Started forum-api-lab.service - Forum API Infrastructure Operations Lab.\n2026-10-10T07:39:38+07:00 ops-db-lab systemd[1]: Stopping forum-api-lab.service - Forum API Infrastructure Operations Lab...\n2026-10-10T07:39:38+07:00 ops-db-lab systemd[1]: forum-api-lab.service: Deactivated successfully.\n2026-10-10T07:39:38+07:00 ops-db-lab systemd[1]: Stopped forum-api-lab.service - Forum API Infrastructure Operations Lab.\n2026-10-10T07:39:38+07:00 ops-db-lab systemd[1]: Started forum-api-lab.service - Forum API Infrastructure Operations Lab.\n2026-10-10T07:39:39+07:00 ops-db-lab systemd[1]: Stopping forum-api-lab.service - Forum API Infrastructure Operations Lab...\n2026-10-10T07:39:39+07:00 ops-db-lab systemd[1]: forum-api-lab.service: Deactivated successfully.\n2026-10-10T07:39:39+07:00 ops-db-lab systemd[1]: Stopped forum-api-lab.service - Forum API Infrastructure Operations Lab.\n2026-10-10T07:39:39+07:00 ops-db-lab systemd[1]: Started forum-api-lab.service - Forum API Infrastructure Operations Lab.\n2026-10-10T07:39:39+07:00 ops-db-lab systemd[1]: Stopping forum-api-lab.service - Forum API Infrastructure Operations Lab...\n2026-10-10T07:39:39+07:00 ops-db-lab systemd[1]: forum-api-lab.service: Deactivated successfully.\n2026-10-10T07:39:39+07:00 ops-db-lab systemd[1]: Stopped forum-api-lab.service - Forum API Infrastructure Operations Lab.",
+    "recovery": {
+      "source": "opslab_forum",
+      "target": "opslab_restore_20261010073938_3ad51e",
+      "sha256": "c65d5fcc640ac735d3a8fd6ac6fd386ec23a9c88ffde81e81ddce885e17a8309",
+      "backup_seconds": 0.587117,
+      "restore_seconds": 0.138823,
+      "verify_seconds": 0.315935,
+      "scope": "lab recovery observations only; not production RTO/RPO",
+      "backup_root_mode": "0o700"
+    }
+  },
+  "status": "passed",
+  "passed": 41,
+  "total": 41
+}
+

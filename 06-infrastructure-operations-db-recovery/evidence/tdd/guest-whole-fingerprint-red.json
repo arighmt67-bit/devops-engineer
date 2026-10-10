@@ -1,0 +1,19 @@
+{
+  "at": "2026-10-10T00:26:43.087005+00:00",
+  "cwd": "/Users/arirahmatr/projects/devops-engineer/06-infrastructure-operations-db-recovery",
+  "command": [
+    "/Library/Developer/CommandLineTools/usr/bin/python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-v",
+    "-k",
+    "test_fingerprint_covers"
+  ],
+  "interpreter": "/Library/Developer/CommandLineTools/usr/bin/python3",
+  "exit_code": 1,
+  "stdout": "",
+  "stderr": "test_fingerprint_covers_nonpublic_rows_and_schema_definition (test_guest.GuestSafetyTests) ... FAIL\n\n======================================================================\nFAIL: test_fingerprint_covers_nonpublic_rows_and_schema_definition (test_guest.GuestSafetyTests)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/Users/arirahmatr/projects/devops-engineer/06-infrastructure-operations-db-recovery/tests/test_guest.py\", line 37, in test_fingerprint_covers_nonpublic_rows_and_schema_definition\n    result = guest.fingerprint('fixture_db')\nAttributeError: 'dict' object has no attribute 'replace'\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/Users/arirahmatr/projects/devops-engineer/06-infrastructure-operations-db-recovery/tests/test_guest.py\", line 39, in test_fingerprint_covers_nonpublic_rows_and_schema_definition\n    self.fail('non-public schema fingerprint unsupported: ' + str(error))\nAssertionError: non-public schema fingerprint unsupported: 'dict' object has no attribute 'replace'\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n"
+}

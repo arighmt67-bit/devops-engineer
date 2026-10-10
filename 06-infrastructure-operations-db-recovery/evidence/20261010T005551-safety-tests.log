@@ -1,0 +1,48 @@
+action=safety-tests
+exit_code=0
+{"report": "/var/folders/xt/6rd3y0hx32v2mkt0y3drwx7c0000gp/T/tmp3lfm5c5n/fixture_run.json", "status": "failed", "passed": 0, "total": 0}
+TEST FIXTURE ONLY safety tests
+TEST FIXTURE ONLY
+TEST FIXTURE ONLY safety tests
+TEST FIXTURE ONLY safety tests
+TEST FIXTURE ONLY safety tests
+TEST FIXTURE ONLY safety tests
+HTTP ready (not DB-aware; run test for DB validation).
+test_cleanup_attempts_exact_rule_removal_and_restart_even_on_failure (test_fault_cleanup.FaultCleanupTests.test_cleanup_attempts_exact_rule_removal_and_restart_even_on_failure) ... ok
+test_deliberate_restart_resets_systemd_start_limit_before_restart (test_guest.GuestSafetyTests.test_deliberate_restart_resets_systemd_start_limit_before_restart) ... ok
+test_fingerprint_covers_nonpublic_rows_and_schema_definition (test_guest.GuestSafetyTests.test_fingerprint_covers_nonpublic_rows_and_schema_definition) ... ok
+test_restore_revokes_public_database_privileges_before_loading_archive (test_guest.GuestSafetyTests.test_restore_revokes_public_database_privileges_before_loading_archive) ... ok
+test_restored_access_keeps_reader_readonly_and_app_without_ddl (test_guest.GuestSafetyTests.test_restored_access_keeps_reader_readonly_and_app_without_ddl) ... ok
+test_summary_written_to_fixed_protected_path_even_on_failure (test_guest.GuestSafetyTests.test_summary_written_to_fixed_protected_path_even_on_failure) ... ok
+test_existing_unmarked_or_partial_package_is_never_overwritten (test_host.HostSafetyTests.test_existing_unmarked_or_partial_package_is_never_overwritten) ... ok
+test_fresh_failed_report_is_retained_with_cli_failure (test_host.HostSafetyTests.test_fresh_failed_report_is_retained_with_cli_failure) ... TEST FIXTURE ONLY guest failure
+ok
+test_fresh_status_exit_mismatch_is_never_published (test_host.HostSafetyTests.test_fresh_status_exit_mismatch_is_never_published) ... ok
+test_guest_report_rejects_path_injection_and_secret_fields (test_host.HostSafetyTests.test_guest_report_rejects_path_injection_and_secret_fields) ... ok
+test_stale_success_is_never_published_for_either_guest_exit (test_host.HostSafetyTests.test_stale_success_is_never_published_for_either_guest_exit) ... ok
+test_test_fetches_fixed_summary_via_sudo_not_guest_report_paths (test_host.HostSafetyTests.test_test_fetches_fixed_summary_via_sudo_not_guest_report_paths) ... ok
+test_up_bootstraps_fixed_package_with_bytecode_disabled (test_host.HostSafetyTests.test_up_bootstraps_fixed_package_with_bytecode_disabled) ... ok
+test_up_refuses_existing_unmarked_installation_before_upload (test_host.HostSafetyTests.test_up_refuses_existing_unmarked_installation_before_upload) ... ok
+test_upload_uses_recursive_fixed_package_without_overwrite (test_host.HostSafetyTests.test_upload_uses_recursive_fixed_package_without_overwrite) ... ok
+test_matching_marker_does_not_hide_installed_source_mutation (test_install_probe.InstallationProbeTests.test_matching_marker_does_not_hide_installed_source_mutation) ... ok
+test_installation_accepts_archive_fixture_with_runtime_node_modules (test_installation.InstallationTests.test_installation_accepts_archive_fixture_with_runtime_node_modules) ... ok
+test_installation_bootstrap_accepts_exact_archive_fixture (test_installation.InstallationTests.test_installation_bootstrap_accepts_exact_archive_fixture) ... ok
+test_installation_bootstrap_rejects_mutation_before_unchanged_claim (test_installation.InstallationTests.test_installation_bootstrap_rejects_mutation_before_unchanged_claim) ... ok
+test_installation_rejects_missing_tracked_files_or_directories (test_installation.InstallationTests.test_installation_rejects_missing_tracked_files_or_directories) ... ok
+test_installation_rejects_modified_tracked_contents (test_installation.InstallationTests.test_installation_rejects_modified_tracked_contents) ... ok
+test_installation_rejects_noncanonical_pinned_tree_extra_entries (test_installation.InstallationTests.test_installation_rejects_noncanonical_pinned_tree_extra_entries) ... ok
+test_installation_rejects_noncanonical_pinned_tree_symlinks (test_installation.InstallationTests.test_installation_rejects_noncanonical_pinned_tree_symlinks) ... ok
+test_installation_validates_source_before_inspecting_installation (test_installation.InstallationTests.test_installation_validates_source_before_inspecting_installation) ... ok
+test_http_clients_use_hostname_for_ipv4_or_ipv6_localhost (test_loopback.LoopbackTests.test_http_clients_use_hostname_for_ipv4_or_ipv6_localhost) ... ok
+test_host_run_id_binds_report_and_rejects_unsafe_identifiers (test_run_binding.RunBindingTests.test_host_run_id_binds_report_and_rejects_unsafe_identifiers) ... ok
+test_archive_must_resolve_inside_backup_root (test_safety.SafetyTests.test_archive_must_resolve_inside_backup_root) ... ok
+test_preexisting_restore_target_is_refused (test_safety.SafetyTests.test_preexisting_restore_target_is_refused) ... ok
+test_restore_name_is_strict_new_namespace (test_safety.SafetyTests.test_restore_name_is_strict_new_namespace) ... ok
+test_snapshot_members_cannot_escape_or_ship_extra_files (test_safety.SafetyTests.test_snapshot_members_cannot_escape_or_ship_extra_files) ... ok
+test_source_pin_and_hash_are_both_required (test_safety.SafetyTests.test_source_pin_and_hash_are_both_required) ... ok
+test_tampered_hash_refused_before_restore (test_safety.SafetyTests.test_tampered_hash_refused_before_restore) ... ok
+
+----------------------------------------------------------------------
+Ran 32 tests in 0.625s
+
+OK

@@ -1,0 +1,253 @@
+{
+  "verified_at": "2026-10-10T00:40:33.063333+00:00",
+  "vm": "ops-db-lab",
+  "versions": {
+    "kernel": "Linux 6.8.0-142-generic",
+    "postgres": "16.15 (Ubuntu 16.15-0ubuntu0.24.04.1)"
+  },
+  "passed": 33,
+  "checks": [
+    {
+      "name": "systemd_active",
+      "passed": true,
+      "observed": "active"
+    },
+    {
+      "name": "dedicated_nonroot_user",
+      "passed": true,
+      "observed": "forumops"
+    },
+    {
+      "name": "process_really_nonroot",
+      "passed": true,
+      "observed": "forumops"
+    },
+    {
+      "name": "protected_config",
+      "passed": true,
+      "observed": "640 root forumops"
+    },
+    {
+      "name": "outsider_cannot_read_config",
+      "passed": true,
+      "observed": {
+        "exit_code": 1
+      }
+    },
+    {
+      "name": "loopback_listener",
+      "passed": true,
+      "observed": [
+        "LISTEN 0      511            [::1]:5050         [::]:*"
+      ]
+    },
+    {
+      "name": "reader_can_select",
+      "passed": true,
+      "observed": "SET\n2"
+    },
+    {
+      "name": "reader_cannot_write",
+      "passed": true,
+      "observed": {
+        "exit_code": 1,
+        "error": "permission denied"
+      }
+    },
+    {
+      "name": "app_cannot_create_table",
+      "passed": true,
+      "observed": {
+        "exit_code": 1
+      }
+    },
+    {
+      "name": "restored_database_exists",
+      "passed": true,
+      "observed": [
+        "opslab_restore_20261010073938_3ad51e",
+        "opslab_restore_20261010072215_f5c41b"
+      ]
+    },
+    {
+      "name": "restored_all_non_system_tables_present",
+      "passed": true,
+      "observed": {
+        "source": [
+          "fixture_20261010072215_f5c41b.positive_amount",
+          "fixture_20261010073938_3ad51e.positive_amount",
+          "public.authentications",
+          "public.comment_likes",
+          "public.comments",
+          "public.pgmigrations",
+          "public.replies",
+          "public.threads",
+          "public.users"
+        ],
+        "restored": [
+          "fixture_20261010072215_f5c41b.positive_amount",
+          "fixture_20261010073938_3ad51e.positive_amount",
+          "public.authentications",
+          "public.comment_likes",
+          "public.comments",
+          "public.pgmigrations",
+          "public.replies",
+          "public.threads",
+          "public.users"
+        ]
+      }
+    },
+    {
+      "name": "restored_exact_fixture_20261010072215_f5c41b.positive_amount",
+      "passed": true,
+      "observed": {
+        "source": "1|3d591c99244ba81c83fdc8fd45db26b8",
+        "restored": "1|3d591c99244ba81c83fdc8fd45db26b8"
+      }
+    },
+    {
+      "name": "restored_exact_fixture_20261010073938_3ad51e.positive_amount",
+      "passed": true,
+      "observed": {
+        "source": "1|3d591c99244ba81c83fdc8fd45db26b8",
+        "restored": "1|3d591c99244ba81c83fdc8fd45db26b8"
+      }
+    },
+    {
+      "name": "restored_exact_public.authentications",
+      "passed": true,
+      "observed": {
+        "source": "2|c868a7bd5eafdd02a368911782da6179",
+        "restored": "2|c868a7bd5eafdd02a368911782da6179"
+      }
+    },
+    {
+      "name": "restored_exact_public.comment_likes",
+      "passed": true,
+      "observed": {
+        "source": "0|d41d8cd98f00b204e9800998ecf8427e",
+        "restored": "0|d41d8cd98f00b204e9800998ecf8427e"
+      }
+    },
+    {
+      "name": "restored_exact_public.comments",
+      "passed": true,
+      "observed": {
+        "source": "0|d41d8cd98f00b204e9800998ecf8427e",
+        "restored": "0|d41d8cd98f00b204e9800998ecf8427e"
+      }
+    },
+    {
+      "name": "restored_exact_public.pgmigrations",
+      "passed": true,
+      "observed": {
+        "source": "6|929544105c3e8b862a66737e40a45473",
+        "restored": "6|929544105c3e8b862a66737e40a45473"
+      }
+    },
+    {
+      "name": "restored_exact_public.replies",
+      "passed": true,
+      "observed": {
+        "source": "0|d41d8cd98f00b204e9800998ecf8427e",
+        "restored": "0|d41d8cd98f00b204e9800998ecf8427e"
+      }
+    },
+    {
+      "name": "restored_exact_public.threads",
+      "passed": true,
+      "observed": {
+        "source": "2|150217029aea47fa5ed6125eae71e533",
+        "restored": "2|150217029aea47fa5ed6125eae71e533"
+      }
+    },
+    {
+      "name": "restored_exact_public.users",
+      "passed": true,
+      "observed": {
+        "source": "2|71fc1910293799e4e44b982c9a357185",
+        "restored": "2|71fc1910293799e4e44b982c9a357185"
+      }
+    },
+    {
+      "name": "database_connect_without_temp_opslab_forum",
+      "passed": true,
+      "observed": "opslab_app|t|f\nopslab_reader|t|f"
+    },
+    {
+      "name": "restored_reader_can_select_opslab_forum",
+      "passed": true,
+      "observed": "SET\n2"
+    },
+    {
+      "name": "no_temp_ddl_opslab_app_opslab_forum",
+      "passed": true,
+      "observed": {
+        "exit_code": 1
+      }
+    },
+    {
+      "name": "no_temp_ddl_opslab_reader_opslab_forum",
+      "passed": true,
+      "observed": {
+        "exit_code": 1
+      }
+    },
+    {
+      "name": "reader_cannot_write_opslab_forum",
+      "passed": true,
+      "observed": {
+        "exit_code": 1
+      }
+    },
+    {
+      "name": "database_connect_without_temp_opslab_restore_20261010073938_3ad51e",
+      "passed": true,
+      "observed": "opslab_app|t|f\nopslab_reader|t|f"
+    },
+    {
+      "name": "restored_reader_can_select_opslab_restore_20261010073938_3ad51e",
+      "passed": true,
+      "observed": "SET\n2"
+    },
+    {
+      "name": "no_temp_ddl_opslab_app_opslab_restore_20261010073938_3ad51e",
+      "passed": true,
+      "observed": {
+        "exit_code": 1
+      }
+    },
+    {
+      "name": "no_temp_ddl_opslab_reader_opslab_restore_20261010073938_3ad51e",
+      "passed": true,
+      "observed": {
+        "exit_code": 1
+      }
+    },
+    {
+      "name": "reader_cannot_write_opslab_restore_20261010073938_3ad51e",
+      "passed": true,
+      "observed": {
+        "exit_code": 1
+      }
+    },
+    {
+      "name": "database_backed_http_read",
+      "passed": true,
+      "observed": {
+        "status": "success",
+        "thread_id": "thread--Bfalghvn9SuS_YAsu-eR"
+      }
+    },
+    {
+      "name": "fault_rule_removed",
+      "passed": true,
+      "observed": "-P OUTPUT ACCEPT"
+    },
+    {
+      "name": "service_returns_to_primary_database",
+      "passed": true,
+      "observed": "opslab_forum"
+    }
+  ]
+}

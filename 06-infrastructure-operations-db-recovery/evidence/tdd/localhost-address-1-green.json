@@ -1,0 +1,19 @@
+{
+  "at": "2026-10-10T00:22:02.226981+00:00",
+  "cwd": "/Users/arirahmatr/projects/devops-engineer/06-infrastructure-operations-db-recovery",
+  "command": [
+    "/Library/Developer/CommandLineTools/usr/bin/python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-v",
+    "-k",
+    "http_clients_use_hostname"
+  ],
+  "interpreter": "/Library/Developer/CommandLineTools/usr/bin/python3",
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "test_http_clients_use_hostname_for_ipv4_or_ipv6_localhost (test_loopback.LoopbackTests) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nOK\n"
+}

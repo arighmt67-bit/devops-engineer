@@ -1,0 +1,19 @@
+{
+  "at": "2026-10-10T00:38:05.503657+00:00",
+  "cwd": "/Users/arirahmatr/projects/devops-engineer/06-infrastructure-operations-db-recovery",
+  "command": [
+    "/Library/Developer/CommandLineTools/usr/bin/python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-v",
+    "-k",
+    "restore_revokes_public"
+  ],
+  "interpreter": "/Library/Developer/CommandLineTools/usr/bin/python3",
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "test_restore_revokes_public_database_privileges_before_loading_archive (test_guest.GuestSafetyTests) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nOK\n"
+}

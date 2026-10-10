@@ -1,0 +1,19 @@
+{
+  "at": "2026-10-10T00:52:42.938929+00:00",
+  "cwd": "/Users/arirahmatr/projects/devops-engineer/06-infrastructure-operations-db-recovery",
+  "command": [
+    "/opt/homebrew/opt/python@3.11/bin/python3.11",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-v",
+    "-k",
+    "noncanonical_pinned_tree"
+  ],
+  "interpreter": "/opt/homebrew/opt/python@3.11/bin/python3.11",
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "test_installation_rejects_noncanonical_pinned_tree_extra_entries (test_installation.InstallationTests.test_installation_rejects_noncanonical_pinned_tree_extra_entries) ... ok\ntest_installation_rejects_noncanonical_pinned_tree_symlinks (test_installation.InstallationTests.test_installation_rejects_noncanonical_pinned_tree_symlinks) ... ok\n\n----------------------------------------------------------------------\nRan 2 tests in 0.172s\n\nOK\n"
+}

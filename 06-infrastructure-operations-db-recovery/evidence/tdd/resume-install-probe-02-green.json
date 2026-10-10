@@ -1,0 +1,19 @@
+{
+  "at": "2026-10-10T00:54:00.144891+00:00",
+  "cwd": "/Users/arirahmatr/projects/devops-engineer/06-infrastructure-operations-db-recovery",
+  "command": [
+    "/opt/homebrew/opt/python@3.11/bin/python3.11",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-v",
+    "-k",
+    "matching_marker_does_not_hide"
+  ],
+  "interpreter": "/opt/homebrew/opt/python@3.11/bin/python3.11",
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "test_matching_marker_does_not_hide_installed_source_mutation (test_install_probe.InstallationProbeTests.test_matching_marker_does_not_hide_installed_source_mutation) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.115s\n\nOK\n"
+}

@@ -1,0 +1,19 @@
+{
+  "at": "2026-10-10T00:49:09.819449+00:00",
+  "cwd": "/Users/arirahmatr/projects/devops-engineer/06-infrastructure-operations-db-recovery",
+  "command": [
+    "/opt/homebrew/opt/python@3.11/bin/python3.11",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-v",
+    "-k",
+    "test_fresh_status_exit_mismatch_is_never_published"
+  ],
+  "interpreter": "/opt/homebrew/opt/python@3.11/bin/python3.11",
+  "exit_code": 0,
+  "stdout": "TEST FIXTURE ONLY safety tests\nTEST FIXTURE ONLY safety tests\n",
+  "stderr": "test_fresh_status_exit_mismatch_is_never_published (test_host.HostSafetyTests.test_fresh_status_exit_mismatch_is_never_published) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nOK\n"
+}

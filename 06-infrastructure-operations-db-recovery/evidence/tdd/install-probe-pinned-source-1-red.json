@@ -1,0 +1,19 @@
+{
+  "at": "2026-10-10T00:48:26.443609+00:00",
+  "cwd": "/Users/arirahmatr/projects/devops-engineer/06-infrastructure-operations-db-recovery",
+  "command": [
+    "/Library/Developer/CommandLineTools/usr/bin/python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-v",
+    "-k",
+    "matching_marker_does_not_hide"
+  ],
+  "interpreter": "/Library/Developer/CommandLineTools/usr/bin/python3",
+  "exit_code": 1,
+  "stdout": "",
+  "stderr": "test_matching_marker_does_not_hide_installed_source_mutation (test_install_probe.InstallationProbeTests) ... FAIL\n\n======================================================================\nFAIL: test_matching_marker_does_not_hide_installed_source_mutation (test_install_probe.InstallationProbeTests)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/Users/arirahmatr/projects/devops-engineer/06-infrastructure-operations-db-recovery/tests/test_install_probe.py\", line 34, in test_matching_marker_does_not_hide_installed_source_mutation\n    self.assertEqual(classify(), 'partial')\nAssertionError: 'matching' != 'partial'\n- matching\n+ partial\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.082s\n\nFAILED (failures=1)\n"
+}

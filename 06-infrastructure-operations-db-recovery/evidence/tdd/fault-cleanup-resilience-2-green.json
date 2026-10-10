@@ -1,0 +1,19 @@
+{
+  "at": "2026-10-10T00:47:05.522654+00:00",
+  "cwd": "/Users/arirahmatr/projects/devops-engineer/06-infrastructure-operations-db-recovery",
+  "command": [
+    "/Library/Developer/CommandLineTools/usr/bin/python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-v",
+    "-k",
+    "cleanup_attempts_exact"
+  ],
+  "interpreter": "/Library/Developer/CommandLineTools/usr/bin/python3",
+  "exit_code": 0,
+  "stdout": "",
+  "stderr": "test_cleanup_attempts_exact_rule_removal_and_restart_even_on_failure (test_fault_cleanup.FaultCleanupTests) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nOK\n"
+}

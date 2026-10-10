@@ -1,0 +1,19 @@
+{
+  "at": "2026-10-10T00:08:09.708457+00:00",
+  "cwd": "/Users/arirahmatr/projects/devops-engineer/06-infrastructure-operations-db-recovery",
+  "command": [
+    "/Library/Developer/CommandLineTools/usr/bin/python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-v",
+    "-k",
+    "test_test_fetches"
+  ],
+  "interpreter": "/Library/Developer/CommandLineTools/usr/bin/python3",
+  "exit_code": 1,
+  "stdout": "",
+  "stderr": "test_test_fetches_fixed_summary_via_sudo_not_guest_report_paths (test_host.HostSafetyTests) ... ERROR\n\n======================================================================\nERROR: test_test_fetches_fixed_summary_via_sudo_not_guest_report_paths (test_host.HostSafetyTests)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/Users/arirahmatr/projects/devops-engineer/06-infrastructure-operations-db-recovery/tests/test_host.py\", line 77, in test_test_fetches_fixed_summary_via_sudo_not_guest_report_paths\n    lab.test()\n  File \"/Users/arirahmatr/projects/devops-engineer/06-infrastructure-operations-db-recovery/lab.py\", line 165, in test\n    raise RuntimeError('missing or failing guest evidence')\nRuntimeError: missing or failing guest evidence\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (errors=1)\n"
+}

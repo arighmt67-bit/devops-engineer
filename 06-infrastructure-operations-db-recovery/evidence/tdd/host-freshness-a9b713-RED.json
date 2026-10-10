@@ -1,0 +1,19 @@
+{
+  "at": "2026-10-10T00:47:56.826447+00:00",
+  "cwd": "/Users/arirahmatr/projects/devops-engineer/06-infrastructure-operations-db-recovery",
+  "command": [
+    "/Library/Developer/CommandLineTools/usr/bin/python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-v",
+    "-k",
+    "test_stale_success_is_never_published_for_either_guest_exit"
+  ],
+  "interpreter": "/Library/Developer/CommandLineTools/usr/bin/python3",
+  "exit_code": 1,
+  "stdout": "TEST FIXTURE ONLY safety tests\nTEST FIXTURE ONLY\nTEST FIXTURE ONLY safety tests\nTEST FIXTURE ONLY\n",
+  "stderr": "test_stale_success_is_never_published_for_either_guest_exit (test_host.HostSafetyTests) ... TEST FIXTURE ONLY guest failure\n\n======================================================================\nFAIL: test_stale_success_is_never_published_for_either_guest_exit (test_host.HostSafetyTests) (guest_exit=1)\n----------------------------------------------------------------------\nRuntimeError: integration failed; log retained\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/Users/arirahmatr/projects/devops-engineer/06-infrastructure-operations-db-recovery/tests/test_host.py\", line 118, in test_stale_success_is_never_published_for_either_guest_exit\n    self._run_summary_fixture(evidence, 'passed', guest_exit, fresh=False)\nAssertionError: \"fresh|run_id\" does not match \"integration failed; log retained\"\n\n======================================================================\nFAIL: test_stale_success_is_never_published_for_either_guest_exit (test_host.HostSafetyTests) (guest_exit=0)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/Users/arirahmatr/projects/devops-engineer/06-infrastructure-operations-db-recovery/tests/test_host.py\", line 118, in test_stale_success_is_never_published_for_either_guest_exit\n    self._run_summary_fixture(evidence, 'passed', guest_exit, fresh=False)\nAssertionError: RuntimeError not raised\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=2)\n"
+}

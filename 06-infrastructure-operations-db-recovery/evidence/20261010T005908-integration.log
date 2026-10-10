@@ -1,0 +1,3 @@
+action=integration
+exit_code=0
+{"report": "/var/lib/ops-db-lab/evidence/bf7e255594f643d8a9457dd6a5e8e991.json", "status": "passed", "passed": 41, "total": 41}

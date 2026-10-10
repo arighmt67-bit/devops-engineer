@@ -27,8 +27,9 @@ devops-engineer/
 │   ├── 02-karsajobs-kubernetes/        # Multi-service Go & Vue.js orkestrasi di Kubernetes
 │   ├── 03-async-ecommerce-rabbitmq/    # Asynchronous Event-Driven Architecture dengan RabbitMQ
 │   └── 04-forum-api-kubernetes/        # Production K8s Manifest (GHCR Image, Secrets, SRE Probes)
-└── 05-infrastructure-as-code/          # Infrastructure as Code (IaC) & Cloud Provisioning
-    └── terraform-aws-microservices/    # Modular Terraform AWS (VPC, SG, Observability, Auto-Destroy)
+├── 05-infrastructure-as-code/          # Infrastructure as Code (IaC) & Cloud Provisioning
+│   └── terraform-aws-microservices/    # Modular Terraform AWS (VPC, SG, Observability, Auto-Destroy)
+└── 06-infrastructure-operations-db-recovery/ # Lab Linux, PostgreSQL, troubleshooting & restore
 ```
 
 ---
@@ -64,6 +65,19 @@ devops-engineer/
   * **01 - Docker Compose**: Orkestrasi multi-container `item-app` (aplikasi web Node.js terhubung ke MongoDB database) dengan custom bridge network dan volume persistence.
   * **02 - Kubernetes Cluster**: Deployment arsitektur decoupled (Backend Golang + Frontend Vue.js + MongoDB StatefulSet) menggunakan K8s Deployment, ClusterIP/NodePort Services, ConfigMaps, PersistentVolumes, dan Secrets.
   * **03 - Asynchronous EDA**: Implementasi Event-Driven Architecture menggunakan message broker RabbitMQ yang menghubungkan `order-service` dan `shipping-service` secara asynchronous dan decoupled.
+
+---
+
+## Lab Linux & PostgreSQL Operations
+
+[![Offline safety tests](https://github.com/arighmt67-bit/devops-engineer/actions/workflows/ops-db-lab.yml/badge.svg)](https://github.com/arighmt67-bit/devops-engineer/actions/workflows/ops-db-lab.yml)
+
+[06-infrastructure-operations-db-recovery](./06-infrastructure-operations-db-recovery) menjalankan Forum API sebagai service nonroot di VM Ubuntu terpisah. Lab mencakup akses SQL, diagnosis gangguan koneksi/service, dan `pg_dump` → restore ke database baru → verifikasi lewat SQL dan API.
+
+- Hasil lab tercatat: **32 tes offline, 41/41 pemeriksaan integrasi**, serta rerun dari ekstrak ZIP.
+- CI menjalankan tes offline pada Python 3.9, 3.11, dan 3.13; CI **tidak** mengklaim menjalankan integrasi Multipass.
+- Secret dan dump tetap di guest. Data sintetis berlabel **TEST FIXTURE**; durasi recovery bukan jaminan RTO/RPO production.
+- Perintah, batasan, dan bukti ada di README serta folder `evidence/` modul.
 
 ---
 

@@ -1,0 +1,16 @@
+{
+  "command": [
+    "multipass",
+    "exec",
+    "ops-db-lab",
+    "--",
+    "sudo",
+    "python3",
+    "-B",
+    "-c",
+    "<bounded guest cleanup probe>"
+  ],
+  "exit_code": 0,
+  "stdout": "{\"status\": \"passed\", \"vm\": \"ops-db-lab\", \"checks\": [{\"scenario\": \"insert_timeout\", \"passed\": true, \"expected_exception\": \"TimeoutExpired\", \"effects\": \"real guest rule insertion/removal and service restart; boundary failure is injected\", \"outcome\": {\"residual_rule\": false, \"service_restored\": true, \"errors\": []}, \"independent_rule_absent\": true, \"systemd_active\": true, \"http_ready\": true}, {\"scenario\": \"probe_timeout\", \"passed\": true, \"expected_exception\": \"RuntimeError\", \"effects\": \"real guest rule insertion/removal and service restart; boundary failure is injected\", \"outcome\": {\"residual_rule\": false, \"service_restored\": true, \"errors\": [\"rule_removal_TimeoutExpired\"]}, \"independent_rule_absent\": true, \"systemd_active\": true, \"http_ready\": true}, {\"scenario\": \"body_failure\", \"passed\": true, \"expected_exception\": \"AssertionError\", \"effects\": \"real guest rule insertion/removal and service restart; boundary failure is injected\", \"outcome\": {\"residual_rule\": false, \"service_restored\": true, \"errors\": []}, \"independent_rule_absent\": true, \"systemd_active\": true, \"http_ready\": true}], \"fault_scope\": \"TEST FIXTURE ONLY injected boundary failures; actual privileged effects in isolated guest\"}\n",
+  "stderr": ""
+}

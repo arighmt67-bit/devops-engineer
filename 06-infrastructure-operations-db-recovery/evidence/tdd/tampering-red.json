@@ -1,0 +1,18 @@
+{
+  "at": "2026-10-09T23:52:48.392074+00:00",
+  "cwd": "/Users/arirahmatr/projects/devops-engineer/06-infrastructure-operations-db-recovery",
+  "command": [
+    "/Library/Developer/CommandLineTools/usr/bin/python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-p",
+    "test_safety.py",
+    "-v"
+  ],
+  "exit_code": 1,
+  "stdout": "",
+  "stderr": "test_archive_must_resolve_inside_backup_root (test_safety.SafetyTests) ... ok\ntest_preexisting_restore_target_is_refused (test_safety.SafetyTests) ... ok\ntest_restore_name_is_strict_new_namespace (test_safety.SafetyTests) ... ok\ntest_tampered_hash_refused_before_restore (test_safety.SafetyTests) ... FAIL\n\n======================================================================\nFAIL: test_tampered_hash_refused_before_restore (test_safety.SafetyTests)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/Users/arirahmatr/projects/devops-engineer/06-infrastructure-operations-db-recovery/tests/test_safety.py\", line 45, in test_tampered_hash_refused_before_restore\n    policy.validate_archive(archive, directory, digest)\nAssertionError: ValueError not raised\n\n----------------------------------------------------------------------\nRan 4 tests in 0.004s\n\nFAILED (failures=1)\n"
+}

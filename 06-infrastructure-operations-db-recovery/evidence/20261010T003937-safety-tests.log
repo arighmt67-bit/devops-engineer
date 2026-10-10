@@ -1,0 +1,27 @@
+action=safety-tests
+exit_code=0
+{"report": "/var/folders/xt/6rd3y0hx32v2mkt0y3drwx7c0000gp/T/tmp5vwn_bdu/fixture_run.json", "status": "failed", "passed": 0, "total": 0}
+HTTP ready (not DB-aware; run test for DB validation).
+test_deliberate_restart_resets_systemd_start_limit_before_restart (test_guest.GuestSafetyTests) ... ok
+test_fingerprint_covers_nonpublic_rows_and_schema_definition (test_guest.GuestSafetyTests) ... ok
+test_restore_revokes_public_database_privileges_before_loading_archive (test_guest.GuestSafetyTests) ... ok
+test_restored_access_keeps_reader_readonly_and_app_without_ddl (test_guest.GuestSafetyTests) ... ok
+test_summary_written_to_fixed_protected_path_even_on_failure (test_guest.GuestSafetyTests) ... ok
+test_existing_unmarked_or_partial_package_is_never_overwritten (test_host.HostSafetyTests) ... ok
+test_guest_report_rejects_path_injection_and_secret_fields (test_host.HostSafetyTests) ... ok
+test_test_fetches_fixed_summary_via_sudo_not_guest_report_paths (test_host.HostSafetyTests) ... ok
+test_up_bootstraps_fixed_package_with_bytecode_disabled (test_host.HostSafetyTests) ... ok
+test_up_refuses_existing_unmarked_installation_before_upload (test_host.HostSafetyTests) ... ok
+test_upload_uses_recursive_fixed_package_without_overwrite (test_host.HostSafetyTests) ... ok
+test_http_clients_use_hostname_for_ipv4_or_ipv6_localhost (test_loopback.LoopbackTests) ... ok
+test_archive_must_resolve_inside_backup_root (test_safety.SafetyTests) ... ok
+test_preexisting_restore_target_is_refused (test_safety.SafetyTests) ... ok
+test_restore_name_is_strict_new_namespace (test_safety.SafetyTests) ... ok
+test_snapshot_members_cannot_escape_or_ship_extra_files (test_safety.SafetyTests) ... ok
+test_source_pin_and_hash_are_both_required (test_safety.SafetyTests) ... ok
+test_tampered_hash_refused_before_restore (test_safety.SafetyTests) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.038s
+
+OK

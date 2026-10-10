@@ -1,0 +1,13 @@
+action=integration
+exit_code=1
+{"report": "/var/lib/ops-db-lab/evidence/20261010072215_f5c41b.json", "status": "failed", "passed": 30, "total": 30}
+Traceback (most recent call last):
+  File "/home/ubuntu/ops-db-package/guest_test.py", line 299, in <module>
+    integration()
+  File "/home/ubuntu/ops-db-package/guest_test.py", line 274, in integration
+    restart()
+  File "/home/ubuntu/ops-db-package/guest_test.py", line 68, in restart
+    command(['systemctl', 'restart', SERVICE])
+  File "/home/ubuntu/ops-db-package/guest_test.py", line 28, in command
+    raise RuntimeError(f'command failed: {args[0]} (exit {result.returncode})')
+RuntimeError: command failed: systemctl (exit 1)
