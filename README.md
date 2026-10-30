@@ -79,6 +79,13 @@ devops-engineer/
 - Secret dan dump tetap di guest. Data sintetis berlabel **TEST FIXTURE**; durasi recovery bukan jaminan RTO/RPO production.
 - Perintah, batasan, dan bukti ada di README serta folder `evidence/` modul.
 
+## Jenkins Monitoring dengan Alert Prometheus
+
+[07-jenkins-monitoring-alerts](./07-jenkins-monitoring-alerts) menambahkan aturan alert `JenkinsDown` dan `JenkinsQueueHigh` pada lab Prometheus dan Grafana. Alert `JenkinsDown` terbukti berpindah ke `firing` saat container Jenkins dimatikan dan kembali normal setelah dinyalakan lagi.
+
+- Alert hanya terlihat di Prometheus dan Grafana; belum ada Alertmanager, jadi belum ada notifikasi email atau chat.
+- Bukti dan batasan ada di README modul.
+
 ---
 
 ## 👤 Author
