@@ -1,0 +1,17 @@
+03:28:11 SEBELUM: up=1 JenkinsDown=inactive
+03:28:11 MATIKAN Jenkins (docker stop)
+03:28:16 setelah mati: up=0 JenkinsDown=inactive
+03:28:22 setelah mati: up=0 JenkinsDown=inactive
+03:28:27 setelah mati: up=0 JenkinsDown=inactive
+03:28:32 setelah mati: up=0 JenkinsDown=inactive
+03:28:37 setelah mati: up=0 JenkinsDown=inactive
+03:28:42 setelah mati: up=0 JenkinsDown=inactive
+03:28:47 setelah mati: up=0 JenkinsDown=inactive
+03:28:52 setelah mati: up=0 JenkinsDown=firing
+03:28:52 HASIL: alert JenkinsDown firing=1
+    JenkinsDown firing critical - Jenkins tidak dapat di-scrape
+03:28:52 NYALAKAN Jenkins lagi (docker start)
+03:33:10 pemulihan: up=0 JenkinsDown=firing
+03:33:18 pemulihan: up=1 JenkinsDown=inactive
+03:33:18 HASIL: pulih=1
+SELESAI
